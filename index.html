@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>전혜지 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Galmuri11";src:url(media/fonts/Galmuri11.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Galmuri11";src:url(media/fonts/Galmuri11-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+:root{
+  /* 레이아웃: 싸이월드 미니홈피. 하늘색 도트 배경 위 다이어리 프레임, 왼쪽 프로필 칸 + 오른쪽 본문 칸 + 오른쪽 세로 탭 */
+  --sky:#a9c8dd;
+  --frame:#7fa6c0;
+  --paper:#ffffff;
+  --ink:#3a3a3a;
+  --muted:#8a8a8a;
+  --line:#d8dde2;
+  --orange:#ff6a00;
+  --blue:#2c6fa3;
+  --pink:#ff7aa8;
+  --pink-soft:#ffeef4;
+  --display:"Galmuri11","Nanum Gothic",monospace;
+  --body:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --accent:var(--pink);
+  --accent-soft:var(--pink-soft);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;word-break:keep-all;overflow-wrap:anywhere;font-family:var(--body);color:var(--ink);font-size:14px;line-height:1.65;
+  background-color:var(--sky);
+  background-image:radial-gradient(rgba(255,255,255,.55) 1.2px,transparent 1.3px);
+  background-size:14px 14px;}
+a{color:var(--blue)}
+button,select{font:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+
+.stage{max-width:1160px;margin:28px auto;padding:0 16px}
+.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;color:#fff;font-size:12px;margin:0 6px 8px 6px;flex-wrap:wrap}
+.topline b{font-family:var(--mono);font-weight:500}
+.counter{background:rgba(0,0,0,.18);padding:2px 10px;border-radius:99px}
+.counter em{font-style:normal;color:#ffe08a;font-weight:800}
+.bgm{display:flex;align-items:center;gap:8px;background:#fff;color:var(--ink);border:1px solid var(--frame);border-radius:6px;padding:4px 10px;font-size:12px;max-width:100%}
+.bgm .eq{display:flex;gap:2px;align-items:flex-end;height:12px}
+.bgm .eq i{width:3px;background:var(--orange);display:block;animation:eq 1s infinite ease-in-out}
+.bgm .eq i:nth-child(2){animation-delay:.2s}.bgm .eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:3px}50%{height:12px}}
+@media (prefers-reduced-motion:reduce){.bgm .eq i{animation:none;height:8px}}
+.bgm .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.book{position:relative;display:grid;grid-template-columns:330px 1fr;gap:10px;background:var(--frame);border-radius:14px;padding:12px;
+  box-shadow:0 0 0 3px #fff inset, 0 6px 0 rgba(0,0,0,.08)}
+.book::before{content:"";position:absolute;inset:7px;border:2px dashed rgba(255,255,255,.7);border-radius:10px;pointer-events:none}
+.panel{position:relative;background:var(--paper);border-radius:8px;padding:16px;min-width:0}
+.panel h2.ttl{font-family:var(--display);font-weight:700;font-size:24px;color:var(--blue);line-height:1.2}
+.subttl{font-size:12px;color:var(--muted)}
+.site-ttl{font-family:var(--display);font-weight:700;font-size:30px;color:var(--blue);letter-spacing:.5px;line-height:1.15}
+
+/* left */
+.left{display:flex;flex-direction:column;gap:12px}
+.today{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;border-bottom:1px dotted var(--line);padding-bottom:6px}
+.today b{color:var(--orange)}
+.photo{border:1px solid var(--line);border-radius:6px;background:linear-gradient(#fdf6ff,#fff);display:grid;place-items:center;padding:14px 0}
+.photo svg{width:110px;height:auto;image-rendering:pixelated}
+.home-intro{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center}
+.dl.mini{grid-template-columns:70px 1fr;margin-top:8px;font-size:12.5px}
+.hcv{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.hcv li{display:grid;grid-template-columns:130px 1fr;column-gap:12px;padding:7px 8px;border-bottom:1px dotted var(--line);font-size:13px}
+.hcv li.hl{background:var(--pink-soft);border-radius:6px;border-bottom:0}
+.hcv b{font-family:var(--mono);font-weight:500;font-size:11.5px;color:var(--orange);grid-row:span 2}
+.hcv em{font-style:normal;font-weight:800}
+.hcv small{grid-column:2;color:#6b6b6b;font-size:12px}
+@media (max-width:700px){.home-intro{grid-template-columns:1fr}.home-intro .pf-photo{max-width:200px}.hcv li{grid-template-columns:1fr}.hcv small{grid-column:1}}
+.self-intro{display:grid;grid-template-columns:180px 1fr;gap:18px;align-items:center}
+.pf-photo{margin:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#f6d6f2}
+@media (max-width:700px){.self-intro{grid-template-columns:1fr}.pf-photo{max-width:220px}}
+.pf-photo img{display:block;width:100%;height:auto}
+.about-top{display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:start}
+@media (max-width:700px){.about-top{grid-template-columns:1fr}.about-top .pf-photo{max-width:180px}}
+.photo.myroom{padding:0;overflow:hidden;background:#cfe1f0}
+.photo.myroom svg{width:100%;display:block;shape-rendering:crispEdges}
+.myroom .fr{transition:transform .2s}
+.myroom a:hover .fr rect:first-child{fill:#ff7aa8}
+.mood{font-size:12px;color:var(--muted)}
+.mood b{color:var(--pink)}
+.intro{font-size:13px;border-top:1px dotted var(--line);border-bottom:1px dotted var(--line);padding:10px 0}
+.name{font-weight:800;font-size:16px}
+.name small{display:block;color:var(--orange);font-weight:700;font-size:12px;margin-top:2px;font-family:var(--mono)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chips span{font-size:11px;background:#eef4f9;color:var(--blue);border-radius:3px;padding:1px 6px}
+.wave label{font-size:12px;color:var(--muted);display:block;margin-bottom:4px}
+.wave select{width:100%;border:1px solid var(--line);border-radius:4px;padding:4px;background:#fff;font-size:12px}
+
+/* right */
+.right{padding-right:16px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:2px solid var(--blue);padding-bottom:8px;margin-bottom:16px;flex-wrap:wrap}
+.head .url{font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+.tabs{position:sticky;top:0;display:flex;flex-direction:row;flex-wrap:wrap;gap:4px;z-index:5;background:#fff;padding:8px 0 10px;margin:-6px 0 8px;border-bottom:1px solid var(--line)}
+.tabs a{display:block;width:auto;padding:6px 14px;border-radius:6px;text-align:center;font-size:12px;font-weight:700;text-decoration:none;
+  background:var(--blue);color:#fff;border:1px solid var(--blue)}
+.tabs a[aria-current="page"]{background:#fff;color:var(--blue);box-shadow:inset 0 -3px 0 var(--orange)}
+.tabs a:hover{background:var(--orange);color:#fff}
+
+.view{display:block;scroll-margin-top:64px}
+.view+.view{margin-top:34px}
+.entry{scroll-margin-top:64px}
+.sec-h{font-family:var(--display);font-size:22px;color:var(--blue);margin:0 0 12px;padding-bottom:6px;border-bottom:2px dashed #b9cfe0;display:flex;align-items:center;gap:8px}
+.sec-h::before{content:"";width:10px;height:10px;background:var(--orange);border-radius:2px}
+.view{animation:fade .25s ease}
+@keyframes fade{from{opacity:.4}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}}
+
+.box{border:1px solid var(--line);border-radius:6px;padding:14px}
+.box-t{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:13px;color:var(--blue);border-bottom:1px solid var(--line);padding-bottom:6px;margin-bottom:10px}
+.box-t .cnt{font-family:var(--display);color:var(--pink);font-size:15px;margin-left:4px;margin-right:auto}
+.allworks{display:grid;gap:14px}
+.allworks .pgrid{grid-template-columns:repeat(3,1fr)}
+.box-t span{font-weight:400;color:var(--muted);font-size:11px}
+.stack{display:grid;gap:14px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* miniroom */
+.room svg{width:100%;height:auto;display:block;border-radius:4px;image-rendering:pixelated}
+.room p{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* recent list */
+.recent{list-style:none;margin:0;padding:0}
+.recent li{display:flex;gap:8px;align-items:baseline;padding:5px 0;border-bottom:1px dotted var(--line);font-size:13px}
+.recent li:last-child{border-bottom:0}
+.recent .cat{font-size:11px;color:#fff;background:var(--orange);border-radius:3px;padding:0 5px;flex:none}
+.recent .cat.b{background:var(--blue)}.recent .cat.g{background:#9a9a9a}
+.recent a{color:var(--ink);text-decoration:none}
+.recent a:hover{color:var(--orange);text-decoration:underline}
+.recent .d{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted);flex:none}
+
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.big div{background:var(--pink-soft);border-radius:6px;padding:10px}
+.big b{display:block;font-size:20px;font-weight:800;color:var(--pink);font-variant-numeric:tabular-nums;line-height:1.2}
+.big span{font-size:11px;color:#6b6b6b}
+
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.shot{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.shot img{width:100%;height:auto;display:block}
+.shot .cap{padding:10px 12px;display:grid;gap:4px;font-size:12.5px}
+.shot .cap b{font-size:13px}
+.shot .cap .k{font-family:var(--mono);font-size:11px;color:var(--orange)}
+.shot .cap q{quotes:none;background:#fff7fa;border-left:3px solid var(--pink);padding:4px 8px;font-size:12px}
+.shots.three{grid-template-columns:1.6fr 1fr 1fr;align-items:start}
+@media (max-width:900px){.shots,.shots.three{grid-template-columns:1fr 1fr}}
+.gal{display:grid;gap:6px}
+.gal-t{font-weight:800;font-size:13px;color:var(--blue);display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.gal-t span{font-weight:400;font-size:11px;color:var(--muted)}
+.strip{display:flex;gap:10px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x mandatory}
+.strip .m{flex:none;margin:0;width:170px;scroll-snap-align:start;display:grid;gap:4px;align-content:start}
+.strip .m.w{width:300px}
+.strip .m.w:not(.tall) img{aspect-ratio:16/9;max-height:none;object-fit:cover;object-position:top;background:#fff}
+.cap-doc figure img{aspect-ratio:16/9;object-fit:cover;object-position:top;background:#fff}.strip .m.xw{width:420px}
+.strip .m img,.strip .m video{width:100%;height:auto;display:block;border-radius:6px;border:1px solid var(--line);background:#111}
+.strip .m.tall img{max-height:520px;object-fit:cover;object-position:top}
+.strip .m:not(.tall) img{max-height:380px;object-fit:contain}
+.strip{align-items:flex-start}
+.strip figcaption{font-size:11.5px;color:#555;line-height:1.4}
+.brand-hero{position:relative;border-radius:8px;overflow:hidden;background:#140606;color:#fff;display:grid;grid-template-columns:1.15fr 1fr;min-height:260px}
+.brand-hero img{width:100%;height:100%;object-fit:cover;display:block}
+.brand-hero .bh-t{padding:20px 22px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.brand-hero .badge{align-self:flex-start;background:#e3262f;color:#fff;font-weight:800;font-size:12px;border-radius:99px;padding:3px 10px}
+.brand-hero h2{font-family:var(--body);font-weight:800;font-size:22px;line-height:1.3;color:#fff}
+.brand-hero h2 b{color:#ff5a5f;font-size:40px;display:block;line-height:1}
+.brand-hero p{font-size:13px;color:#e8d9d9}
+.brand-hero ul{margin:0;padding-left:16px;font-size:12.5px;color:#f3e6e6;columns:2;column-gap:16px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tile{position:relative;display:block;border-radius:6px;overflow:hidden;border:1px solid var(--line);aspect-ratio:1/1;background:#111}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.tile:hover img{transform:scale(1.04)}
+.wk{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.wk a{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:10px;background:#fbfcfd}
+.wk a:hover{border-color:var(--blue)}
+.wk b{display:block;font-family:var(--display);font-size:28px;color:var(--pink);line-height:1}
+.wk span{display:block;font-weight:800;font-size:13px;margin-top:6px}
+.wk em{display:block;font-style:normal;font-size:11px;color:var(--muted);margin-top:3px;line-height:1.45}
+.str{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.str>div{border:1px solid var(--line);border-radius:6px;padding:12px}
+.str i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--orange)}
+.str b{display:block;font-size:14px;margin:2px 0 4px}
+.str p{font-size:12px;color:var(--muted);margin:0 0 6px}
+.str ul{margin:0;padding-left:16px;font-size:12.5px}
+.str li{margin:2px 0}
+.tiles.work6{grid-template-columns:repeat(3,1fr)}
+.tiles.work6 .tile{aspect-ratio:4/3}
+.adstrip{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.adstrip img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:4px;display:block;border:1px solid var(--line)}
+@media (max-width:900px){.wk{grid-template-columns:repeat(2,1fr)}.str{grid-template-columns:1fr}.tiles.work6{grid-template-columns:repeat(2,1fr)}.adstrip{grid-template-columns:repeat(3,1fr)}}
+.tiles.work{grid-template-columns:repeat(4,1fr)}
+.tiles.work .big1{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
+.tile span em{display:block;font-style:normal;font-size:14px;font-family:var(--display)}
+.tiles.work .big1 span em{font-size:20px}
+.tile span{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:11.5px;font-weight:700;padding:16px 8px 6px}
+.contrib{display:grid;gap:5px;background:#f7f9fb;border:1px solid var(--line);border-radius:6px;padding:10px 12px}
+.contrib .ct{font-size:12px;font-weight:800;color:var(--blue)}
+.bar{display:grid;grid-template-columns:110px 1fr 40px;gap:8px;align-items:center;font-size:12px}
+.bar i{display:block;height:8px;border-radius:99px;background:#e3e8ee;position:relative;overflow:hidden}
+.bar i::after{content:"";position:absolute;inset:0;width:var(--w);background:var(--pink);border-radius:99px}
+.bar b{font-family:var(--mono);font-weight:500;text-align:right;color:var(--ink)}
+.cap-doc{display:grid;grid-template-columns:240px 1fr;gap:14px;align-items:start}
+.cap-doc figure{margin:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;max-height:340px;position:relative}
+.cap-doc figure img{width:100%;display:block}
+.cap-doc figure::after{content:"기획안 캡처";position:absolute;right:6px;top:6px;font-size:10px;background:rgba(0,0,0,.65);color:#fff;border-radius:3px;padding:1px 6px}
+.cap-doc figure.yt::after{content:"▶ YouTube";background:#e62117}
+.cap-doc figure:hover{max-height:none}
+@media (max-width:900px){.tiles.work{grid-template-columns:repeat(2,1fr)}.brand-hero{grid-template-columns:1fr}.brand-hero img{max-height:220px}.tiles{grid-template-columns:repeat(2,1fr)}.cap-doc{grid-template-columns:1fr}.brand-hero ul{columns:1}}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.pcard{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:8px;overflow:hidden;text-decoration:none;color:var(--ink);background:#fff;transition:transform .15s, box-shadow .15s}
+.pcard:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,.08);border-color:var(--pink)}
+.pc-img{display:block;aspect-ratio:4/3;background:#111;overflow:hidden}
+.pc-img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.txt-th{display:grid;place-items:center;width:100%;height:100%;font-family:var(--display);font-weight:700;font-size:30px;text-align:center;line-height:1.05}
+.pc-b{display:grid;gap:2px;padding:10px 12px}
+.pc-d{font-family:var(--mono);font-size:11px;color:var(--orange)}
+.pc-b b{font-size:13.5px;line-height:1.4}
+.pc-t{font-size:11.5px;color:var(--muted)}
+.view .entry{display:none}
+.view.detail .grid-only{display:none}
+.view.detail .entry.sel{display:block}
+.back{font-size:12px;font-weight:700;color:var(--blue);text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:1px 8px;background:#fff}
+.back:hover{color:#fff;background:var(--blue)}
+.cap-doc figure.ig{max-height:none}
+.cap-doc figure.ig::after{content:none}
+.cv{list-style:none;margin:0;padding:0;display:grid}
+.cv>li{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:12px 0;border-bottom:1px dotted var(--line);font-size:13px}
+.cv>li:last-child{border-bottom:0}
+.cv>li.hl{background:var(--pink-soft);border-radius:6px;padding:12px 10px;border-bottom:0}
+.cv-d{font-family:var(--mono);font-size:11.5px;color:var(--orange)}
+.cv-d em{display:block;font-style:normal;color:var(--muted)}
+.cv b{font-size:14px}
+.cv ul{margin:4px 0 0;padding-left:18px}
+.cv ul li{margin:2px 0}
+.cv-sum{margin:6px 0 2px;font-size:13px;color:#555}
+.cv-h{margin:10px 0 0;font-weight:800;font-size:12.5px;color:var(--blue)}
+@media (max-width:900px){.pgrid{grid-template-columns:1fr 1fr}.cv>li{grid-template-columns:1fr;gap:2px}}
+@media (max-width:420px){.pgrid{grid-template-columns:1fr}}
+.cyphoto .cp-in{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:center;padding:6px 4px}
+.polaroid{margin:0;background:#fff;padding:10px 10px 6px;border:1px solid #ddd;box-shadow:2px 3px 0 rgba(0,0,0,.08);transform:rotate(-2deg)}
+.polaroid.tilt{transform:rotate(1.5deg)}
+.polaroid img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.polaroid figcaption.logo-cap{padding:10px 8px 4px}
+.polaroid figcaption.logo-cap img{display:block;width:72%;max-width:180px;height:auto;aspect-ratio:auto;object-fit:contain;margin:0 auto}
+.cp-txt .hand{word-break:keep-all}
+.cp-txt p{word-break:keep-all}
+.polaroid figcaption{font-family:var(--display);font-size:20px;text-align:center;color:#555;padding-top:4px}
+.cp-txt{display:grid;gap:8px;font-size:13px}
+.cp-txt .hand{font-family:var(--display);font-size:26px;color:var(--blue);line-height:1.2}
+.mini-kpi{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:10px 0 8px}
+.mini-kpi div{background:var(--pink-soft);border-radius:6px;padding:8px 10px}
+.mini-kpi b{display:block;font-size:17px;font-weight:800;color:var(--pink);line-height:1.2}
+.mini-kpi span{font-size:11px;color:#6b6b6b;line-height:1.35}
+.cp-tbl{border-collapse:collapse;font-size:13px;width:100%;max-width:420px}
+.cp-tbl th{text-align:left;font-weight:400;color:var(--muted);padding:5px 10px 5px 0;border-bottom:1px dotted var(--line);width:96px;white-space:nowrap}
+.cp-tbl td{padding:5px 0;border-bottom:1px dotted var(--line)}
+.cp-tbl b{color:var(--orange)}
+.cp-tbl .mut{color:var(--muted);font-size:11.5px}
+.dolist{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:4px}
+.dolist li{font-size:12px;background:#fff4ec;color:#b44c00;border:1px solid #ffd9bf;border-radius:3px;padding:1px 7px;line-height:1.6}
+.cp-txt .more{font-size:12px;font-weight:700;color:var(--orange);text-decoration:none}
+@media (max-width:700px){.cyphoto .cp-in{grid-template-columns:1fr}.polaroid{max-width:240px;margin:0 auto}}
+.reel-rank ol{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:6px}
+.reel-rank li{display:grid;grid-template-columns:28px 64px 1fr auto;gap:12px;align-items:center;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:#fff}
+.reel-rank li:nth-child(-n+3){background:var(--pink-soft);border-color:#f5c6d6}
+.reel-rank .rk{font-family:var(--display);font-size:24px;font-weight:700;color:var(--pink);text-align:center}
+.reel-rank img{width:64px;height:96px;object-fit:cover;border-radius:4px}
+.reel-rank b{font-size:13px;display:block;line-height:1.4}
+.reel-rank .rt{font-size:11px;color:var(--muted)}
+.reel-rank .rv{font-family:var(--mono);font-size:14px;color:var(--orange);font-weight:500;white-space:nowrap}
+/* diary entries */
+.entry{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.entry-h{background:#f4f8fb;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.entry-h .date{font-family:var(--mono);font-size:11px;color:var(--orange)}
+.entry-h h3{font-size:15px;font-weight:800}
+.entry-h .tag{margin-left:auto;font-size:11px;color:var(--muted)}
+.entry-b{padding:14px;display:grid;gap:10px}
+.entry-b ul{margin:0;padding-left:18px}
+.entry-b li{margin:2px 0}
+.role{font-size:12px;color:var(--muted)}
+.spec{display:flex;flex-wrap:wrap;gap:5px}
+.spec span{font-family:var(--mono);font-size:11px;border:1px dashed #b9c4ce;padding:1px 7px;color:#556}
+.link{font-size:13px;background:#fffaf2;border-left:3px solid var(--orange);padding:8px 10px}
+.link b{color:var(--orange)}
+.entry.feature{border:2px solid var(--pink)}
+.entry.feature .entry-h{background:var(--pink-soft)}
+.folder-note{font-size:12px;color:#6b6b6b;background:#f3f3f3;border-radius:4px;padding:8px 10px}
+
+/* reused: kpis/chart/ops/timeline */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.kpis div{padding:10px 12px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.kpis div:last-child{border-right:0}
+.kpis b{font-size:19px;font-weight:800;color:var(--pink);font-variant-numeric:tabular-nums;line-height:1.25}
+.kpis span{font-size:11px;color:var(--muted);line-height:1.5}
+.chart{margin:0}.chart svg{width:100%;height:auto;display:block}
+.chart figcaption{font-size:11px;color:var(--muted);margin-top:4px}
+.table-scroll{overflow-x:auto}
+.match{width:100%;border-collapse:collapse;font-size:13px}
+.match th,.match td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid var(--line)}
+.match th{font-size:12px;color:var(--muted);font-weight:400;background:#f7f9fb}
+.match td:first-child{font-weight:700;width:30%}
+.ops{font-variant-numeric:tabular-nums}
+.ops caption{caption-side:top;text-align:left;font-weight:800;font-size:13px;padding:0 0 6px}
+.ops td:first-child{width:auto}
+.ops td,.ops th{white-space:nowrap}
+.ops tr.best td{background:var(--pink-soft)}
+.ops tr.sum td{font-weight:800;border-top:2px solid var(--ink)}
+.dir td:first-child{white-space:nowrap;font-weight:700;width:90px}
+.tri{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:12px}
+.tri-h{font-weight:800;margin:0 0 4px}
+.tri ul{margin:0;padding-left:16px}
+.tri mark{background:#fff27a}
+@media (max-width:900px){.tri{grid-template-columns:1fr}}
+.ops-note{font-size:11px;color:var(--muted)}
+.timeline{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.timeline li{padding:8px 10px 8px 0;font-size:12px;border-bottom:1px solid var(--line)}
+.timeline b{display:block;font-family:var(--mono);color:var(--orange);font-weight:500}
+.pill{display:inline-block;font-size:11px;font-weight:800;padding:1px 7px;border-radius:99px;margin-right:4px}
+.pill.direct{background:var(--pink-soft);color:#d63c74}
+.pill.adj{background:#e6f0f8;color:var(--blue)}
+.pill.edu{background:#eee;color:#666}
+
+/* profile */
+.dl{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;font-size:13px;margin:0}
+.dl dt{color:var(--muted)}
+.dl dd{margin:0}
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.skills h3{font-size:13px;font-weight:800;color:var(--blue);margin-bottom:4px}
+.skills p{font-size:12.5px}
+.skills .chips{margin-top:4px}
+.intro-lead{font-family:var(--display);font-size:20px;color:var(--blue);margin:2px 0 6px}
+.intro-p{font-size:13.5px;line-height:1.75;margin:0}
+.motive{display:grid;gap:14px}
+.motive h3{font-size:14px;font-weight:800;color:var(--orange);margin:0 0 4px}
+.motive p{font-size:13.5px;line-height:1.75;margin:0}
+
+/* rows (content planning) */
+.rows{display:grid}
+.row{display:grid;grid-template-columns:140px 1fr;gap:12px;padding:10px 0;border-bottom:1px dotted var(--line);font-size:13px}
+.row:last-child{border-bottom:0}
+.row .c{font-weight:800}
+.row .when{display:block;font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500}
+.row .what{color:#555;margin-top:2px}
+
+/* album */
+.album{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{border:1px solid var(--line);border-radius:6px;padding:12px;display:grid;gap:8px;align-content:start}
+.card .thumb{height:110px;border-radius:4px;display:grid;place-items:center;font-family:var(--display);font-size:26px;font-weight:700;color:#fff;text-align:center;line-height:1.1;padding:8px}
+.card h3{font-size:14px;font-weight:800}
+.card .meta{font-family:var(--mono);font-size:11px;color:var(--orange)}
+.card ul{margin:0;padding-left:18px;font-size:13px}
+
+/* guestbook */
+.gb{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.gb-h{background:#f4f8fb;padding:8px 12px;font-size:12px;display:flex;gap:8px;border-bottom:1px solid var(--line)}
+.gb-h b{color:var(--orange)}
+.gb-b{display:grid;grid-template-columns:90px 1fr;gap:14px;padding:14px;align-items:start}
+.gb-b svg{width:80px;height:auto;image-rendering:pixelated}
+.gb-b:has(.pf-photo){grid-template-columns:200px 1fr;gap:20px}
+.gb-b .pf-photo{position:sticky;top:70px}
+@media (max-width:700px){.gb-b:has(.pf-photo){grid-template-columns:1fr}.gb-b .pf-photo{position:static;max-width:220px}}
+
+footer{text-align:center;color:#fff;font-size:11px;margin:12px 0 30px}
+
+@media (max-width:900px){
+  .book{grid-template-columns:1fr}
+  .tabs{position:static;flex-direction:row;flex-wrap:wrap;margin:-4px 0 12px}
+  .tabs a{width:auto;padding:5px 12px;border-radius:6px;border:1px solid var(--blue)}
+  .right{padding-right:16px}
+  .two,.album,.skills{grid-template-columns:1fr}
+  .big,.kpis{grid-template-columns:1fr 1fr}
+  .kpis div:nth-child(2){border-right:0}.kpis div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .timeline{grid-template-columns:1fr 1fr}
+  .row{grid-template-columns:1fr;gap:2px}
+}
+@media (max-width:420px){.stage{padding:0 8px}.panel{padding:12px}.right{padding-right:12px}.dl{grid-template-columns:1fr}}
+
+/* readability */
+.dl dt{color:#3b4a5c;font-weight:700}
+.box-t{font-size:14px}
+.intro-lead{font-weight:700}
+.intro-lead,.motive h3{width:fit-content;background:linear-gradient(transparent 58%,#ffe3a3 58%);padding:0 2px}
+.motive>div>h3{margin-bottom:8px}
+.motive p+p{margin-top:8px}
+.motive{gap:22px}
+.lb{color:var(--blue);font-weight:800;margin-right:2px}
+.lb::after{content:" ·";color:var(--muted);font-weight:400}
+.entry li,.cv li{margin-bottom:5px;line-height:1.65}
+.role{line-height:1.7}
+.str li strong{font-weight:800;color:inherit}
+
+/* modal detail */
+#pmodal{display:none;position:fixed;inset:0;z-index:2000}
+#pmodal.on{display:block}
+#pmodal .pm-bg{position:absolute;inset:0;background:rgba(20,35,55,.55)}
+#pmodal .pm-box{position:absolute;left:50%;top:4vh;transform:translateX(-50%);width:min(980px,94vw);max-height:92vh;overflow:auto;background:#fff;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+#pmodal .pm-x{position:sticky;top:8px;float:right;margin:8px 8px -44px 0;z-index:3;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:18px;line-height:1;cursor:pointer;color:#333;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+#pmodal .pm-x:hover{background:var(--pink-soft)}
+#pmodal .entry{display:block;border:0;border-radius:0}
+#pmodal .entry-h{padding-right:56px}
+#pmodal .back{display:none}
+html.pm-open,html.pm-open body{overflow:hidden}
+
+/* size hierarchy */
+body{font-size:14.5px}
+.box-t{font-size:15.5px}
+.entry-h h3{font-size:18px}
+.pcard b{font-size:15.5px;line-height:1.4}
+.str b{font-size:17px}
+.str p{font-size:12.5px}
+.tri-h{font-size:15px}
+.cv b{font-size:15px}
+.cv-h{font-size:14px}
+.dl{font-size:14px}
+.role,.folder-note{font-size:13.5px}
+.motive h3{font-size:17px}
+.motive p{font-size:14.5px;line-height:1.85}
+.motive .intro-lead{font-size:26px!important;line-height:1.35}
+.pc-t,figcaption{font-size:12px}
+.shop-stack{display:grid;gap:14px}
+.shop-stack figure{margin:0;width:100%!important}
+.shop-stack figure:first-child{max-width:600px}
+.shop-stack img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:6px}
+.strip .m.t{width:220px}.strip .m.t img{aspect-ratio:3/4;object-fit:cover;width:100%;display:block}.strip .m.sq{width:290px}.strip .m.sq img{aspect-ratio:1/1;object-fit:cover;width:100%;display:block}
+.top3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.t3{display:grid;grid-template-columns:96px 1fr;gap:14px;border:1px solid var(--line);border-radius:6px;padding:12px;align-items:center;background:#fff}
+.t3 img{width:96px;aspect-ratio:9/16;object-fit:cover;border-radius:4px;display:block}
+.t3 i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--orange)}
+.t3 b{display:block;font-size:15px;margin:2px 0 8px}
+.t3 dl{display:grid;grid-template-columns:62px 1fr;gap:3px 6px;margin:0;font-size:12.5px}
+.t3 dt{color:var(--muted)}.t3 dd{margin:0;font-weight:700;white-space:nowrap;overflow-wrap:normal}.t3 dl{min-width:0}.t3>div{min-width:0}.t3 dd.big{font-size:20px;font-weight:800;line-height:1.1}
+@media (max-width:760px){.top3{grid-template-columns:1fr}}
+.fitbox{border:2px solid var(--pink)}.motive p{text-align:justify;word-break:keep-all}.dl.fit dt{min-width:118px}.dl.fit dd a{font-size:12px;white-space:nowrap}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="topline">
+    <span class="counter">TODAY <em>2026.11</em> | 경력 <em>11개월</em></span>
+    <div class="bgm" aria-label="배경음악 표시">
+      <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="t">BGM ♪ CUTIE STREET - かわいいだけじゃだめですか？</span>
+    </div>
+  </div>
+
+  <div class="book">
+    <!-- LEFT -->
+    <aside class="panel left" aria-label="프로필">
+      <div class="today"><span>TODAY IS..</span><b>♥ 행복</b></div>
+      <div class="photo myroom"><svg id="myroom" viewBox="0 0 200 160" role="img" aria-label="미니룸: 작업을 액자로 건 방과 밴드 코너, 미니미">
+<defs>
+<pattern id="wp" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#cfe1f0"/><rect x="1" y="1" width="1" height="1" fill="#e8f1f9"/><rect x="5" y="5" width="1" height="1" fill="#e8f1f9"/></pattern>
+<pattern id="wp2" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#b9d0e4"/><rect x="1" y="1" width="1" height="1" fill="#d6e5f1"/><rect x="5" y="5" width="1" height="1" fill="#d6e5f1"/></pattern>
+<pattern id="fl" width="12" height="10" patternUnits="userSpaceOnUse"><rect width="12" height="10" fill="#f3e3d3"/><path d="M3 3h1v1h-1zM5 3h1v1h-1zM3 4h3v1h-3zM4 5h1v1h-1z" fill="#f2a5b8"/></pattern>
+</defs>
+<polygon points="0,22 40,0 40,92 0,122" fill="url(#wp2)"/>
+<rect x="40" y="0" width="160" height="92" fill="url(#wp)"/>
+<polygon points="0,122 40,92 200,92 200,160 0,160" fill="url(#fl)"/>
+<rect x="40" y="88" width="160" height="4" fill="#e9d6bd"/><polygon points="0,118 40,88 40,92 0,122" fill="#d9c2a5"/>
+<polygon points="8,30 30,18 30,52 8,64" fill="#eaf6ff" stroke="#fff" stroke-width="2"/><line x1="19" y1="24" x2="19" y2="58" stroke="#fff" stroke-width="1.5"/><polygon points="6,28 12,25 12,70 6,73" fill="#ffe3ec"/>
+<a href="#commerce" aria-label="잇올다이 스테이크칩"><g class="fr"><rect x="48" y="7" width="28" height="24" fill="#8a5a34"/><rect x="49" y="8" width="26" height="22" fill="#f3e2c3"/><image href="media/edo_pack.jpg" x="50" y="9" width="24" height="20" preserveAspectRatio="xMidYMid slice"/></g></a><a href="#side-ddeun" aria-label="덕질 계정 뜨내깅"><g class="fr"><rect x="80" y="5" width="22" height="32" fill="#8a5a34"/><rect x="81" y="6" width="20" height="30" fill="#f3e2c3"/><image href="media/ig_ddeun_reels.jpg" x="82" y="7" width="18" height="28" preserveAspectRatio="xMidYMid slice"/></g></a><a href="#ai" aria-label="KAWAII BEAT 리듬게임"><g class="fr"><rect x="106" y="7" width="30" height="24" fill="#8a5a34"/><rect x="107" y="8" width="28" height="22" fill="#f3e2c3"/><image href="media/ddr_title.jpg" x="108" y="9" width="26" height="20" preserveAspectRatio="xMidYMid slice"/></g></a><a href="#agency" aria-label="브랜디드 콘텐츠"><g class="fr"><rect x="48" y="34" width="26" height="19" fill="#8a5a34"/><rect x="49" y="35" width="24" height="17" fill="#f3e2c3"/><image href="media2/pp_d4_1.jpg" x="50" y="36" width="22" height="15" preserveAspectRatio="xMidYMid slice"/></g></a><a href="#side-shop" aria-label="헤그헤그 쇼핑몰"><g class="fr"><rect x="140" y="7" width="24" height="24" fill="#8a5a34"/><rect x="141" y="8" width="22" height="22" fill="#f3e2c3"/><image href="media2/shop_grid.jpg" x="142" y="9" width="20" height="20" preserveAspectRatio="xMidYMid slice"/></g></a><a href="#commerce-giftbox" aria-label="기프트박스 패키지"><g class="fr"><rect x="106" y="34" width="26" height="19" fill="#8a5a34"/><rect x="107" y="35" width="24" height="17" fill="#f3e2c3"/><image href="media2/pp_d7_17.jpg" x="108" y="36" width="22" height="15" preserveAspectRatio="xMidYMid slice"/></g></a>
+<g id="roomfix"></g>
+<text x="196" y="156" text-anchor="end" font-size="5" fill="#9a8a7a" font-family="Galmuri11, monospace">MINI ROOM</text>
+</svg></div>
+      <p class="mood">오늘의 기분 : <b>좋음</b></p>
+      <div class="intro">
+        <p class="name">전혜지 <small>커머스 마케터</small></p>
+        <p style="margin-top:6px">고객의 취향을 읽고 숫자로 확인하는 커머스 마케터입니다.<br>광고 소재 기획부터 성과 분석, 공구·시딩·AI 제작까지 성과가 나는 방법을 찾아 실행합니다.<br>처음 해 보는 일도 먼저 부딪히고 빠르게 익혀 결과로 만듭니다.</p>
+      </div>
+      <div class="chips" aria-label="키워드">
+        <span>#Meta광고운영</span><span>#광고소재제작</span><span>#성과분석</span><span>#PB브랜드운영</span><span>#1인쇼핑몰운영</span><span>#AI자동화</span><span>#패션디자인전공</span>
+      </div>
+      <div class="wave">
+        <label for="wave">파도타기</label>
+        <select id="wave">
+          <option value="">이동할 메뉴를 고르세요</option>
+          <option value="home">홈</option>
+          <option value="about">소개 · 자기소개 · 연락처</option>
+          <option value="resume">이력서</option>
+          <option value="commerce">마케팅 · 잇올다이 광고 소재</option>
+          <option value="agency">브랜디드 콘텐츠 · 클라이언트 프로젝트</option>
+          <option value="ai">AI 활용 역량</option>
+          <option value="side">사이드 프로젝트 · 쇼핑몰·기획안</option>
+        </select>
+      </div>
+    </aside>
+
+    <!-- RIGHT -->
+    <main class="panel right">
+      <nav class="tabs" aria-label="미니홈피 메뉴">
+        <a href="#about" data-v="about">소개</a>
+        <a href="#resume" data-v="resume">이력</a>
+        <a href="#home" data-v="home">대표 작업</a>
+        <a href="#commerce" data-v="commerce">마케팅</a>
+        <a href="#agency" data-v="agency">브랜디드</a>
+        <a href="#side" data-v="side">사이드</a>
+        <a href="#ai" data-v="ai">AI</a>
+      </nav>
+      <div class="head">
+        <div>
+          <h1 class="ttl site-ttl">Hyeji's Portfolio</h1>
+          <p class="subttl">혜지의 포트폴리오 · 커머스 마케팅 · 광고 · 콘텐츠</p>
+        </div>
+        <span class="url">hyeji.portfolio · 2026</span>
+      </div>
+
+      <!-- HOME -->
+      <section class="view" id="v-about" aria-label="소개">
+        <h2 class="sec-h"><span>소개</span></h2>
+        <div class="stack">
+          <div class="box">
+            <div class="box-t">기본 정보</div>
+            <div class="about-top">
+            <figure class="pf-photo"><img src="media2/profile.jpg" alt="전혜지 프로필 사진"></figure>
+            <dl class="dl">
+              <dt>이름</dt><dd>전혜지</dd>
+              <dt>현 소속</dt><dd>스튜디오에피소드 브랜디드콘텐츠 부서 매니저 (약 11개월)</dd>
+                            <dt>주력 업무</dt><dd>사내 PB 브랜드(잇올다이) 커머스 마케팅 · Meta 광고 운영 · 브랜디드 콘텐츠 기획</dd>
+              <dt>전공</dt><dd>수원대학교 패션디자인과</dd>
+              <dt>관심 IP</dt><dd>애니메이션 · 서브컬처 (덕질 계정 「뜨내깅」 운영), J-POP, K-POP</dd>
+            </dl>
+            </div>
+          </div>
+          <div class="box fitbox">
+            <div class="box-t">에이블리 마케터 × 전혜지 <span>공고 요건별 근거</span></div>
+            <dl class="dl fit">
+              <dt>유저·타깃 이해</dt><dd>패션디자인 전공 · 의류 매장 근무 · 1인 쇼핑몰 「헤그헤그」 운영(상품 셀렉·촬영·상세페이지·CS) · 덕질 계정 릴스 누적 <strong>35.6만 회</strong> <a href="#side-shop">보기 ↗</a></dd>
+              <dt>데이터 기반 가설·실험</dt><dd>Meta 광고 소재별 성과 분석 · 데일리 리포트 · TOP1 소재가 구매 <strong>70%</strong> · 구매전환율 <strong>4.8%</strong> · ROAS <strong>2.3배</strong> <a href="#commerce-meta">보기 ↗</a></dd>
+              <dt>성과로 연결</dt><dd>광고 집행 후 월평균 매출 <strong>162만 → 3,662만 원</strong> · 현재까지 누적 매출 <strong>약 2억 원</strong> <a href="#commerce-meta">보기 ↗</a></dd>
+              <dt>마케팅 수단 조합</dt><dd>퍼포먼스 광고 · 유튜버 공동구매 · 오프라인 시딩 이벤트 · 브랜디드 콘텐츠·팝업 <a href="#commerce-gonggu">보기 ↗</a></dd>
+              <dt>AI·자동화</dt><dd>AI 광고 영상 소재 제작·집행 · 카페24 주문 데이터 자동화 · 3개 채널 매출관리 페이지 <a href="#ai">보기 ↗</a></dd>
+              <dt>타 직군 협업</dt><dd>패키지 디자이너 · 물류 담당 · 개발자와 직접 소통 · 사내 PB 브랜드 커머스 실무 전담 <a href="#commerce-ops">보기 ↗</a></dd>
+            </dl>
+          </div>
+      <section class="view" id="v-resume" aria-label="이력서">
+        <h2 class="sec-h"><span>이력</span></h2>
+        <div class="stack">
+          <div class="box">
+            <div class="box-t">경력</div>
+            <ol class="cv">
+              <li class="hl"><span class="cv-d">2025.12 – 재직 중<em>약 11개월</em></span><div><b>스튜디오에피소드</b> · 브랜디드콘텐츠 부서 매니저
+<p class="cv-h">커머스 마케팅 · 사내 PB 잇올다이 스테이크칩</p><ul>
+<li>Meta 광고 소재 15종 제작, 현재까지 누적 매출 약 2억 원 달성에 기여</li>
+<li>유튜버 황형구 공동구매 준비, 기프트박스 패키지 시안 피드백, NHN 홀덤대회 제품 협찬 제작물</li>
+<li>AI 활용 광고 소재 제작, Cafe24 주문 데이터 자동 수집</li></ul>
+<p class="cv-h">브랜디드 콘텐츠</p><ul>
+<li><b class="lb">오우라링5 한국 런칭</b> 잠실 런칭 팝업 진행, 매거진 에디터 현장 소통·팝업 영상 출연, 셀럽 PPL 콘텐츠 가이드</li>
+<li><b class="lb">기획 · 제안</b> 카카오 「오키키」 채널 콘텐츠 제안, 코리아교육그룹 신규 서브채널, 에잇코드 바이럴 캠페인(메인 PM · 진행 중)</li>
+<li>알고케어 VIP 체험 랜딩페이지 제작</li></ul></div></li>
+              <li><span class="cv-d">2023.07 – 2025.01<em>1년 7개월</em></span><div><b>켈리윙즈학원</b> · 정규직<ul><li>수업·커리큘럼 기획, 학부모 대상 블로그 콘텐츠와 홍보물 제작</li></ul></div></li>
+              <li><span class="cv-d">2022.09 – 2023.02<em>6개월</em></span><div><b>풋락커코리아</b> · 계약직<ul><li>매장 운영, 한정판 출시 진열 방식 제안·매장 적용</li></ul></div></li>
+              <li><span class="cv-d">2022.03 – 2022.06<em>4개월</em></span><div><b>용필름</b> · 영화 〈독전2〉 의상팀<ul><li>캐릭터 분석 기반 의상 콘셉트 보드 제작, 의상 제작 공정 참여</li></ul></div></li>
+              <li><span class="cv-d">2017 – 2019</span><div><b>니코앤드 · 유니클로</b> · 리테일<ul><li>스타일링 제안, 상품 진열·매장 구성</li></ul></div></li>
+            </ol>
+          </div>
+          <div class="two">
+            <div class="box"><div class="box-t">학력 · 교육</div>
+              <dl class="dl"><dt>2017 – 2022</dt><dd>수원대학교 미술대학 패션디자인과 졸업</dd><dt>2025.03</dt><dd>제로베이스 콘텐츠 마케터 스쿨 수료</dd></dl>
+            </div>
+            <div class="box"><div class="box-t">자격 · 수상</div>
+              <dl class="dl"><dt>2023.06</dt><dd>GTQ 그래픽기술자격 1급, GTQ 일러스트 1급</dd><dt>2021.12</dt><dd>제2회 한국 섬유 패션 디자인 콘테스트 특선</dd><dt>2021.11</dt><dd>수원대 패션디자인과 졸업 패션쇼 이석태·권문수 크리틱 우수상</dd></dl>
+            </div>
+          </div>
+          <div>
+            <div class="box"><div class="box-t">사이드 · 개인 활동</div>
+              <dl class="dl"><dt>운영 중</dt><dd>서브컬처 덕질 계정 「뜨내깅」 @ddeunegiii (릴스 최고 13.7만 회, 10만+ 릴스 2개)</dd><dt>운영 중</dt><dd>직장인 공감 숏폼 채널 「옆자리그녀」 @yeopjarri 운영 (기획·출연·편집)</dd><dt>2023.05 – 11</dt><dd>개인 쇼핑몰 「헤그헤그」 @heg.heg_on 1인 운영</dd></dl>
+            </div>
+
+          </div>
+        </div>
+      </section>
+          <div class="gb">
+            <div class="gb-h"><b>전혜지</b><span>자기소개 및 입사 후 포부</span></div>
+            <div class="gb-b" style="grid-template-columns:1fr">
+              <div class="motive">
+                <p class="intro-lead" style="margin:0 0 4px;font-size:22px">고객이 반응하는 지점을 찾아 숫자로 증명하는 마케터</p>
+                <div><h3>패션을 사는 사람의 마음을 가까이에서 본 사람</h3><p>패션이 좋아 패션디자인을 전공했고, 감성이 서로 다른 의류 매장에서 일하며 고객이 어떤 옷 앞에서 멈추고 무엇을 보고 지갑을 여는지 가까이에서 지켜봤습니다.</p><p>이후 인스타그램과 네이버 스마트스토어 기반 개인 쇼핑몰 「헤그헤그」를 1인으로 운영하며 상품 셀렉, 스타일링 촬영, 상세페이지 제작, DM 응대까지 직접 맡았습니다. 실루엣·무드·활용도를 보여 주는 룩북형 콘텐츠로 단순한 판매를 넘어 ‘스타일 제안’이 되도록 운영했고, 고객의 반응은 결국 취향을 얼마나 정확히 읽느냐에서 나온다는 것을 배웠습니다.</p></div>
+                <div><h3>가설을 세우고 숫자로 확인하는 사람</h3><p>스튜디오에피소드에서는 사내 PB 브랜드 잇올다이의 커머스 마케팅을 맡아 Meta 광고를 처음부터 운영했습니다. 광고 소재를 직접 기획·제작하고 소재별 성과를 데일리 리포트로 확인하며, 반응이 좋은 메시지에 예산을 모았습니다.</p><p>‘소고기 광인’처럼 타깃의 취향을 정면으로 건드린 소재가 2차 운영 전체 구매의 70%를 만들었고, 광고 집행 전 월평균 162만 원이던 매출은 집행 후 월평균 3,662만 원으로 늘었습니다.</p></div>
+                <div><h3>수단을 가리지 않고 성과로 연결하는 사람</h3><p>광고 외에도 성과가 날 수 있는 방법이라면 먼저 시도했습니다. 유튜버 황형구와의 공동구매에서는 상세페이지와 콘텐츠 가이드를 만들고 판매 현황을 관리했고, 홍대·동성로 술집 두 곳에서는 방문층에 맞춘 오프라인 시딩 이벤트를 기획했습니다. 덕질 계정 「뜨내깅」에서는 릴스 누적 조회 약 35.6만 회를 만들며 숏폼 감각을 키웠습니다.</p><p>촬영이 어려운 장면은 AI로 만들어 광고 영상 소재로 집행했고, 카페24·네이버 스마트스토어·쿠팡 매출을 한곳에서 보는 매출관리 페이지와 카페24 주문 데이터 자동화로 반복 업무를 줄였습니다. 패키지 디자이너, 물류 담당자, 개발자와 직접 소통하며 정해진 체계가 없는 작은 조직에서도 필요한 일을 스스로 찾아 끝까지 해내는 법을 익혔습니다.</p></div>
+                <div><h3>입사 후 포부</h3><p>에이블리는 수많은 고객의 취향과 행동이 데이터로 쌓이는 곳입니다. 입사 후에는 주요 유저층이 무엇에 반응하는지 빠르게 포착하고, 유입과 전환을 높일 가설을 세워 퍼포먼스·콘텐츠·인플루언서·프로모션 가운데 가장 효과적인 방식으로 실험하겠습니다.</p><p>작은 실험도 결과를 숫자로 확인하고 다음 실행으로 연결해, 에이블리의 성장에 실제로 기여하는 마케터가 되겠습니다.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-t">연락처</div>
+            <dl class="dl">
+              <dt>이메일</dt><dd><a href="mailto:seri9777@naver.com">seri9777@naver.com</a></dd>
+              <dt>연락처</dt><dd><a href="tel:01040163845">010-4016-3845</a></dd>
+              <dt>덕질 계정</dt><dd><a href="https://www.instagram.com/ddeunegiii/">@ddeunegiii</a> · 서브컬처 덕질 기록 「뜨내깅」</dd>
+              <dt>쇼핑몰 계정</dt><dd><a href="https://www.instagram.com/heg.heg_on/">@heg.heg_on</a> · 개인 쇼핑몰 「헤그헤그」</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <div class="box-t">쓰는 툴</div>
+            <div class="skills">
+              <div><h3>디자인 · 제작</h3><div class="chips"><span>Figma</span><span>Photoshop</span><span>Illustrator</span><span>미리캔버스</span><span>CapCut</span></div></div>
+              <div><h3>AI</h3><div class="chips"><span>Claude · Claude Code</span><span>ChatGPT</span><span>Gemini</span><span>Higgsfield</span><span>Kling AI</span></div></div>
+              <div><h3>협업 · 데이터</h3><div class="chips"><span>Notion</span><span>Slack</span><span>Google Sheets</span><span>Meta 광고 관리자</span><span>Cafe24</span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="v-home" aria-label="홈">
+        <h2 class="sec-h"><span>대표 작업 · 성과</span></h2>
+        <div class="stack">
+          <div class="box">
+            <div class="box-t">대표 작업 <span>눌러서 자세히 보기</span></div>
+            <div class="tiles work6">
+              <a class="tile" href="#agency"><img src="media2/pp_d4_1.jpg" alt=""><span><em>브랜디드 콘텐츠</em>오우라링 팝업 · 제안 4건</span></a>
+              <a class="tile" href="#side-ddeun"><img src="media/ig_ddeun_reels.jpg" alt=""><span><em>덕질 계정 「뜨내깅」</em>릴스 누적 약 35.6만 회</span></a>
+              <a class="tile" href="#ai"><img src="media/ddr_play.jpg" alt=""><span><em>AI 팬 콘텐츠</em>응원법 콜북 · 리듬게임</span></a>
+              <a class="tile" href="#commerce"><img src="media/edo_hang.jpg" alt=""><span><em>잇올다이 스테이크칩</em>광고 소재 · 공구 · 현장 제작물 · 패키지</span></a>
+              <a class="tile" href="#side-shop"><img src="media2/shop_grid.jpg" alt=""><span><em>1인 쇼핑몰 「헤그헤그」</em>셀렉 · 촬영 · 판매</span></a>
+              <a class="tile" href="#agency-vans"><img src="media2/vn_20.jpg" alt=""><span><em>팝업 기획안</em>반스 60주년 성수 팝업 · 헬리녹스 매장 게임</span></a>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-t">잘하는 일 <span>Strengths</span></div>
+            <div class="str">
+              <div><i>01</i><b>팬 콘텐츠·IP 기획</b><p>팬이 반응하는 포인트를 직접 만들고 숫자로 확인</p><ul><li>덕질 계정 「뜨내깅」 운영 · 릴스 누적 <strong>약 35.6만 회</strong></li><li>직장인 숏폼 채널 「옆자리그녀」 운영</li><li>응원법 콜북 웹페이지 · 팬 리듬게임 AI 제작</li></ul></div>
+              <div><i>02</i><b>팝업·브랜디드 콘텐츠 기획</b><p>팝업 현장 진행과 콘텐츠 제안</p><ul><li>오우라링 런칭 팝업 진행 · 매거진 영상 출연</li><li>클라이언트 콘텐츠 제안 <strong>4건</strong></li><li>팝업 기획안 작성</li></ul></div>
+              <div><i>03</i><b>광고 소재·제작물 마케팅</b><p>소재와 제작물로 브랜드를 알리고 결과를 숫자로 정리</p><ul><li>Meta 광고 소재 제작 · 현재까지 누적 매출 <strong>약 2억 원</strong></li><li>NHN 홀덤대회 협찬 제작물 · 기프트박스 패키지 디렉션</li></ul></div>
+            </div>
+          </div>
+          <div class="box">
+            <div class="box-t">숫자로 보는 경험 <span>2025.12 – 2026.11</span></div>
+            <div class="big">
+              <div><b>35.6만 회</b><span>덕질 계정 릴스 누적 조회</span></div>
+              <div><b>2,464건</b><span>Meta 광고 귀속 구매</span></div>
+              <div><b>162 → 3,662만</b><span>광고 집행 후 월평균 매출 (원)</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <!-- DIARY -->
+      <!-- RESUME -->
+      <section class="view" id="v-commerce" aria-label="마케팅 잇올다이">
+        <h2 class="sec-h"><span>마케팅 · 잇올다이 커머스 마케팅</span></h2>
+        <div class="stack">
+          <div class="box cyphoto grid-only">
+            <div class="cp-in">
+              <figure class="polaroid tilt"><img src="media/edo_hang.jpg" alt="고기와 함께 걸린 스테이크칩 패키지"><figcaption class="logo-cap"><img src="media/edo_logo.png" alt="EAT OR DIE"></figcaption></figure>
+              <div class="cp-txt">
+                <p class="hand">잇올다이<br>커머스 마케팅</p>
+                <p>스튜디오에피소드 내부 PB 브랜드 잇올다이 스테이크칩<br>마케팅 참여 · 매출 성장 기여</p>
+                <div class="mini-kpi"><div><b>3,662만 원</b><span>광고 집행 후 월평균 매출<br>(집행 전 162만 원)</span></div><div><b>1억 9,198만 원</b><span>5~11월 누적 매출</span></div><div><b>3.3배</b><span>자사몰 매출 ÷ Meta 광고비</span></div><div><b>2,464건</b><span>Meta 귀속 구매</span></div></div>
+                <a class="more" href="#commerce-meta">Meta 광고 성과 자세히 보기 ▸</a>
+              </div>
+            </div>
+          </div>
+          <div class="contrib grid-only"><span class="ct">잇올다이 마케팅에서 참여한 일</span><div class="chips"><span>광고 소재 제작</span><span>Meta 성과 분석·데일리 리포트</span><span>인플루언서 공구 (황형구)</span><span>인플루언서 리스트업</span><span>홀덤대회 협찬 광고물</span><span>오프라인 술집 시딩</span><span>패키지 디자인 소통</span><span>물류 커뮤니케이션</span><span>매출관리 페이지·개발자 소통</span></div></div>
+
+          <div class="pgrid grid-only"><a class="pcard" href="#commerce-meta"><span class="pc-img"><img src="media2/rn_1.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.05 – 현재</span><b>광고 소재 마케팅 · 현재까지 누적 매출 약 2억 원</b><span class="pc-t">EAT OR DIE · Meta 광고</span></span></a><a class="pcard" href="#commerce-gonggu"><span class="pc-img"><img src="media/gg_5.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.04</span><b>황형구 선수 유튜브 공동구매 준비</b><span class="pc-t">EAT OR DIE × 황형구</span></span></a><a class="pcard" href="#commerce-nhn"><span class="pc-img"><img src="media/nhn_p1_front.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.11</span><b>NHN 주최 홀덤대회 광고 · 제품 협찬 제작물</b><span class="pc-t">EAT OR DIE × NHN</span></span></a><a class="pcard" href="#commerce-giftbox"><span class="pc-img"><img src="media2/pp_d7_17.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026</span><b>스테이크칩 기프트박스 패키지 디자인 디렉션</b><span class="pc-t">EAT OR DIE · 패키지</span></span></a><a class="pcard" href="#commerce-detail"><span class="pc-img"><img src="media/dp_08.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026</span><b>스테이크칩 상세페이지 리뉴얼</b><span class="pc-t">EAT OR DIE · 상세페이지</span></span></a><a class="pcard" href="#commerce-ops"><span class="pc-img"><img src="media/edo_pack.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026</span><b>상품이 고객에게 닿기까지, 운영 협업</b><span class="pc-t">EAT OR DIE · 운영</span></span></a><a class="pcard" href="#commerce-seeding"><span class="pc-img"><img src="media2/sd_3.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.05</span><b>홍대·동성로 술집 오프라인 시딩 이벤트</b><span class="pc-t">EAT OR DIE</span></span></a></div>
+
+          <article class="entry feature" id="commerce-meta">
+            <div class="entry-h"><a class="back" href="#commerce">← 목록</a><span class="date">2026.05 – 현재</span><h3>광고 소재 마케팅 · 현재까지 누적 매출 약 2억 원</h3><span class="tag">EAT OR DIE · Meta 광고</span></div>
+            <div class="entry-b">
+              <p class="role">역할: 광고 소재 기획·제작, 소재별 성과 분석, 데일리 리포트</p>
+              <div class="kpis">
+          <div><b>3,662만 원</b><span>광고 집행 후 월평균 매출<br>(집행 전 162만 원)</span></div>
+          <div><b>1억 9,198만 원</b><span>5~11월 누적 매출<br>연 매출의 96.7%</span></div>
+          <div><b>3.3배</b><span>자사몰 매출 ÷ Meta 광고비<br>1억 7,370만 ÷ 5,221만 원</span></div>
+          <div><b>3,072만 원</b><span>5~11월 누적<br>영업이익</span></div>
+        </div>
+        <figure class="chart" aria-label="2026년 월별 총매출 막대그래프">
+          <svg viewBox="0 0 660 230" role="img">
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#6b6774">
+              <line x1="40" y1="190" x2="650" y2="190" stroke="#dcd7d0"/>
+              <line x1="40" y1="130" x2="650" y2="130" stroke="#eeeae5"/>
+              <line x1="40" y1="70" x2="650" y2="70" stroke="#eeeae5"/>
+              <text x="34" y="194" text-anchor="end">0</text>
+              <text x="34" y="134" text-anchor="end">2천만</text>
+              <text x="34" y="74" text-anchor="end">4천만</text>
+            </g>
+            <g fill="#c9c3bb">
+              <rect x="52" y="185.8" width="34" height="4.2"/>
+              <rect x="107" y="182.6" width="34" height="7.4"/>
+              <rect x="162" y="186.5" width="34" height="3.5"/>
+              <rect x="217" y="185.8" width="34" height="4.2"/>
+            </g>
+            <g fill="#e2357a">
+              <rect x="272" y="39.2" width="34" height="150.8"/>
+              <rect x="327" y="76.9" width="34" height="113.1"/>
+              <rect x="437" y="112.2" width="34" height="77.8"/>
+              <rect x="492" y="82.1" width="34" height="107.9"/>
+              <rect x="547" y="90.3" width="34" height="99.7"/>
+              <rect x="602" y="163.4" width="34" height="26.6" fill-opacity=".45"/>
+            </g>
+            <line x1="264" y1="18" x2="264" y2="190" stroke="#1c1a24" stroke-dasharray="4 3"/>
+            <text x="270" y="22" font-family="Noto Sans KR, sans-serif" font-size="12" font-weight="700" fill="#1c1a24">Meta 광고 집행 시작</text>
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#1c1a24" text-anchor="middle">
+              <text x="289" y="34">5,027만</text>
+              <text x="399" y="184" fill="#6b6774">품절·중단</text>
+              <text x="619" y="158" fill="#6b6774">11/9 기준</text>
+            </g>
+            <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#6b6774" text-anchor="middle">
+              <text x="69" y="208">1월</text><text x="124" y="208">2월</text><text x="179" y="208">3월</text><text x="234" y="208">4월</text>
+              <text x="289" y="208">5월</text><text x="344" y="208">6월</text><text x="399" y="208">7월</text><text x="454" y="208">8월</text>
+              <text x="509" y="208">9월</text><text x="564" y="208">10월</text><text x="619" y="208">11월</text>
+            </g>
+          </svg>
+          <figcaption>2026년 월별 총매출 (원)<br>월평균은 집계가 끝난 1~4월과 5·6·8·9·10월을 비교<br>7월은 6월 2차 품절·광고 중단 이후 매출이 없어 제외</figcaption>
+        </figure>
+        <div class="table-scroll">
+        <table class="match ops">
+          <caption>Meta 광고(페이스북·인스타그램 → 공식몰) 운영 지표 · 5/14~10/5 운영 리포트 기준</caption>
+          <thead><tr><th>월</th><th>광고비(VAT 포함)</th><th>구매</th><th>전환 매출</th><th>ROAS</th><th>구매전환율</th></tr></thead>
+          <tbody>
+            <tr><td>5월</td><td>1,337만 원</td><td>756건</td><td>2,841만 원</td><td>2.13배</td><td>4.6%</td></tr>
+            <tr><td>6월</td><td>1,128만 원</td><td>663건</td><td>2,422만 원</td><td>2.15배</td><td>4.1%</td></tr>
+            <tr class="best"><td>8월</td><td>582만 원</td><td>398건</td><td>1,873만 원</td><td>3.22배</td><td>5.7%</td></tr>
+            <tr><td>9월</td><td>1,088만 원</td><td>561건</td><td>2,316만 원</td><td>2.13배</td><td>5.3%</td></tr>
+            <tr class="sum"><td>합계</td><td>4,296만 원</td><td>2,464건</td><td>9,892만 원</td><td>2.30배</td><td>4.8%</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p class="ops-note">합계: 10월 1~5일 운영분 포함<br>구매 1건당 광고비 17,436원 · 클릭률 2.0%<br>ROAS: Meta 귀속 전환 매출 기준 (자사몰 전체 매출 기준 3.3배와 별도)</p>
+        
+              
+<div class="gal"><div class="gal-t">구매 전환 TOP 3 소재<span>Meta 2차 운영 2026.08.25 – 09.10 · 전체 구매 936건</span></div><div class="top3"><div class="t3"><img src="media2/top1.jpg" alt="소고기 광인 주목"><div><i>TOP 1</i><b>소고기 광인 주목</b><dl><dt>구매</dt><dd class="big">654건</dd><dt>전환매출</dt><dd>2,667만 원</dd><dt>ROAS</dt><dd>246%</dd><dt>비중</dt><dd>70%</dd></dl></div></div><div class="t3"><img src="media2/top2.jpg" alt="와이프 간식"><div><i>TOP 2</i><b>와이프 간식</b><dl><dt>구매</dt><dd class="big">141건</dd><dt>전환매출</dt><dd>641만 원</dd><dt>ROAS</dt><dd>273%</dd><dt>비중</dt><dd>15%</dd></dl></div></div><div class="t3"><img src="media2/top3.jpg" alt="리뉴얼 전 할인"><div><i>TOP 3</i><b>리뉴얼 전 할인</b><dl><dt>구매</dt><dd class="big">55건</dd><dt>전환매출</dt><dd>309만 원</dd><dt>ROAS</dt><dd>490%</dd><dt>비중</dt><dd>6%</dd></dl></div></div></div></div>
+              
+            </div>
+          </article>
+
+          <article class="entry" id="commerce-gonggu">
+            <div class="entry-h"><a class="back" href="#commerce">← 목록</a><span class="date">2026.04</span><h3>황형구 선수 유튜브 공동구매 준비</h3><span class="tag">EAT OR DIE × 황형구</span></div>
+            <div class="entry-b">
+              <p class="role">역할: 상세페이지 제작, 공구 가이드·유튜브 가이드 작성, 판매 현황 체크</p>
+              <ul>
+                <li>공구 상세페이지를 직접 제작</li>
+                <li>공구 진행 가이드와 유튜브 콘텐츠 가이드를 작성</li>
+                <li>공구 기간 판매 현황을 체크하고 결과를 정리</li>
+              </ul>
+              <div class="gal"><div class="gal-t">황형구 X 잇올다이 공구 상세페이지<span>직접 제작 · WHAT-A-DROP 판매</span></div><div class="strip"><figure class="m v"><video autoplay muted loop playsinline poster="media/gif_gg_poster.jpg" src="media/gif_gg.mp4"></video><figcaption>공구 상세 움짤</figcaption></figure><figure class="m tall"><img src="media/gg_1.jpg" alt="상세페이지 1"><figcaption>상세페이지 1</figcaption></figure><figure class="m tall"><img src="media/gg_2.jpg" alt="상세페이지 2"><figcaption>상세페이지 2</figcaption></figure><figure class="m tall"><img src="media/gg_3.jpg" alt="상세페이지 3"><figcaption>상세페이지 3</figcaption></figure><figure class="m tall"><img src="media/gg_4.jpg" alt="상세페이지 4"><figcaption>상세페이지 4</figcaption></figure><figure class="m tall"><img src="media/gg_5.jpg" alt="상세페이지 5"><figcaption>상세페이지 5</figcaption></figure><figure class="m tall"><img src="media/gg_6.jpg" alt="상세페이지 6"><figcaption>상세페이지 6</figcaption></figure><figure class="m tall"><img src="media/gg_7.jpg" alt="상세페이지 7"><figcaption>상세페이지 7</figcaption></figure><figure class="m tall"><img src="media/gg_8.jpg" alt="상세페이지 8"><figcaption>상세페이지 8</figcaption></figure><figure class="m tall"><img src="media/gg_9.jpg" alt="상세페이지 9"><figcaption>상세페이지 9</figcaption></figure><figure class="m tall"><img src="media/gg_10.jpg" alt="구성 안내"><figcaption>구성 안내</figcaption></figure></div></div>
+              <div class="cap-doc"><a href="https://www.youtube.com/watch?v=oKA3DaMX-m4" target="_blank" rel="noopener"><figure class="yt"><img src="media/hhg_yt.jpg" alt="황형구 유튜브 공동구매 콘텐츠"></figure></a><div style="display:grid;gap:8px;align-content:start"><p class="tri-h">[유튜브 콘텐츠] 황형구 × 잇올다이 공동구매</p><ul><li>황형구 유튜브 채널 먹방 콘텐츠에 스테이크칩 노출</li><li>공구 진행 가이드·유튜브 콘텐츠 가이드 작성</li></ul><p class="role"><a href="https://www.youtube.com/watch?v=oKA3DaMX-m4" target="_blank" rel="noopener">유튜브 콘텐츠 보기 ↗</a></p><p class="role">판매 페이지: <a href="https://what-a-drop.com/surl/P/25" target="_blank" rel="noopener">WHAT-A-DROP 황형구 X 잇올다이 스테이크칩 ↗</a></p></div></div>
+            </div>
+          </article>
+
+          <article class="entry" id="commerce-nhn">
+            <div class="entry-h"><a class="back" href="#commerce">← 목록</a><span class="date">2026.11 · 진행 중</span><h3>NHN 주최 홀덤대회 광고 · 제품 협찬 제작물</h3><span class="tag">EAT OR DIE × NHN</span></div>
+            <div class="entry-b">
+              <p class="role">NHN 주최 홀덤대회에 스테이크칩 제품 협찬 · 대회 광고 제작물 제작</p>
+              <ul>
+                <li>대회 중계 광고 영상과 현장 제작물(QR 판넬 · X배너) 제작</li>
+                <li>11월 25일 대회 예정 · 현재 진행 중</li>
+              </ul>
+              <div class="gal"><div class="gal-t">1. 중계방송용 광고 영상<span>16:9 · 15초</span></div><div class="strip"><figure class="m xw"><video controls muted playsinline preload="none" poster="media/nhn_final_poster.jpg" src="media/nhn_final.mp4"></video><figcaption>최종 송출본</figcaption></figure></div></div><div class="gal"><div class="gal-t">2. 테이블 QR 판넬<span>2종</span></div><div class="strip"><figure class="m "><img src="media/nhn_p1_front.jpg" alt="1안 앞면 「오늘 배팅할 칩은」"><figcaption>1안 앞면 「오늘 배팅할 칩은」</figcaption></figure><figure class="m "><img src="media/nhn_p1_back.jpg" alt="1안 뒷면 QR"><figcaption>1안 뒷면 QR</figcaption></figure><figure class="m "><img src="media/po_cow.jpg" alt="2안 앞면 「잃어버린 소를 찾습니다」"><figcaption>2안 앞면 「잃어버린 소를 찾습니다」</figcaption></figure><figure class="m "><img src="media/nhn_p2_back.jpg" alt="2안 뒷면 QR"><figcaption>2안 뒷면 QR</figcaption></figure></div></div><div class="gal"><div class="gal-t">3. X배너 60×180cm<span>2종</span></div><div class="strip"><figure class="m "><img src="media/nhn_xb_a.jpg" alt="1안"><figcaption>1안</figcaption></figure><figure class="m "><img src="media/nhn_xb_b.jpg" alt="2안"><figcaption>2안</figcaption></figure></div></div>
+              
+            </div>
+          </article>
+
+          <article class="entry feature" id="commerce-giftbox">
+            <div class="entry-h"><a class="back" href="#commerce">← 목록</a><span class="date">2026</span><h3>스테이크칩 기프트박스 패키지 디자인 디렉션</h3><span class="tag">EAT OR DIE · 패키지</span></div>
+            <div class="entry-b">
+              <div class="contrib"><span class="ct">맡은 일</span><div class="chips"><span>디자이너 소통</span><span>시안 피드백</span></div></div>
+              <ul><li>기프트박스 패키지 디자이너와 소통하며 시안 1차 → 4차 → Final 피드백 진행</li></ul>
+              <div class="gal"><div class="gal-t">기프트박스 디자인 시안<span>디자이너 시안 · 피드백·디렉션</span></div><div class="strip"><figure class="m w"><img src="media2/pp_d7_4.jpg" alt="디자인 방향 레퍼런스"><figcaption>디자인 방향 레퍼런스</figcaption></figure><figure class="m w"><img src="media2/pp_d7_5.jpg" alt="패키지·기프트박스 구성"><figcaption>패키지·기프트박스 구성</figcaption></figure><figure class="m w"><img src="media2/pp_d7_14.jpg" alt="A안 · 스페셜 기프트박스"><figcaption>A안 · 스페셜 기프트박스</figcaption></figure><figure class="m w"><img src="media2/pp_d7_17.jpg" alt="A안 목업"><figcaption>A안 목업</figcaption></figure><figure class="m w"><img src="media2/pp_d7_19.jpg" alt="B안 · 그래픽 패턴"><figcaption>B안 · 그래픽 패턴</figcaption></figure><figure class="m w"><img src="media2/pp_d7_22.jpg" alt="B안 목업"><figcaption>B안 목업</figcaption></figure><figure class="m w"><img src="media2/pp_d7_27.jpg" alt="시안 전체 비교"><figcaption>시안 전체 비교</figcaption></figure></div></div>
+            </div>
+          </article>
+
+          <article class="entry" id="commerce-detail">
+            <div class="entry-h"><a class="back" href="#commerce">← 목록</a><span class="date">2026</span><h3>스테이크칩 상세페이지 리뉴얼</h3><span class="tag">EAT OR DIE · 상세페이지</span></div>
+            <div class="entry-b">
+              <p class="role">역할: 리뉴얼 상세페이지 구성·전달, 페이지 제작 개발자 소통</p>
+              <div class="contrib"><span class="ct">사용 툴</span><div class="chips"><span>Figma</span><span>Claude</span><span>ChatGPT</span></div></div>
+              <div class="gal"><div class="gal-t">리뉴얼 상세페이지 (모바일)<span></span></div><div class="strip"><figure class="m tall"><img src="media/dp_01.jpg" alt="도입: 소고기의 본질"><figcaption>도입: 소고기의 본질</figcaption></figure><figure class="m tall"><img src="media/dp_02.jpg" alt="고민 제기: 기름과 냄새"><figcaption>고민 제기: 기름과 냄새</figcaption></figure><figure class="m tall"><img src="media/dp_03.jpg" alt="재구매·후기 근거"><figcaption>재구매·후기 근거</figcaption></figure><figure class="m tall"><img src="media/dp_07.jpg" alt="소금까지 고른 이유"><figcaption>소금까지 고른 이유</figcaption></figure><figure class="m tall"><img src="media/dp_08.jpg" alt="핵심 스펙: 단백질 32g·고기 98%"><figcaption>핵심 스펙: 단백질 32g·고기 98%</figcaption></figure><figure class="m tall"><img src="media/dp_11.jpg" alt="더 맛있게 먹는 방법"><figcaption>더 맛있게 먹는 방법</figcaption></figure></div></div>
+            </div>
+          </article>
+
+          <article class="entry" id="commerce-ops">
+            <div class="entry-h"><a class="back" href="#commerce">← 목록</a><span class="date">2026</span><h3>상품이 고객에게 닿기까지, 운영 협업</h3><span class="tag">EAT OR DIE · 운영</span></div>
+            <div class="entry-b">
+              <ul>
+                <li>패키지 디자인 진행을 맡아 소통·조율</li>
+                <li>물류 커뮤니케이션 담당</li>
+                <li>카페24 자사몰, 네이버 스마트스토어, 쿠팡 매출을 한곳에서 보는 매출관리 페이지를 만들고, 연동을 위해 개발자와 소통</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="entry" id="commerce-seeding">
+            <div class="entry-h"><a class="back" href="#commerce">← 목록</a><span class="date">2026.05</span><h3>홍대·동성로 술집 오프라인 시딩 이벤트</h3><span class="tag">EAT OR DIE</span></div>
+            <div class="entry-b">
+              <ul>
+                <li>홍대 혼술바 미로길 · 키비 핫도그 동성로점 2곳의 분위기·방문층 분석 후 술 페어링 시딩 기획</li>
+                <li>사장님이 직접 인쇄해 쓰는 QR 포스터 제작 (뜯어가는 QR · 벽면 포스터)</li>
+                <li>인스타 스토리 태그 이벤트 「완판 기록의 스테이크칩이 이 매장에 떴다」 기획 · 10명 추첨 리워드</li>
+              </ul>
+              <div class="gal"><div class="gal-t">현장 사진<span>홍대 미로길 · 동성로 키비</span></div><div class="strip">
+                <figure class="m t"><img src="media2/sd_1.jpg" alt="미로길 테이블 QR"><figcaption>홍대 미로길 · 테이블 QR</figcaption></figure>
+                <figure class="m t"><img src="media2/sd_2.jpg" alt="미로길 페어링"><figcaption>홍대 미로길 · 위스키 페어링</figcaption></figure>
+                <figure class="m sq"><img src="media2/sd_3.jpg" alt="키비 매장 이벤트 POP"><figcaption>동성로 키비 · 매장 이벤트 POP</figcaption></figure>
+                <figure class="m sq"><img src="media2/sd_4.jpg" alt="키비 증정 이벤트 보드"><figcaption>동성로 키비 · 증정 이벤트 보드</figcaption></figure>
+                <figure class="m sq"><img src="media2/sd_5.jpg" alt="맥주 페어링"><figcaption>맥주 페어링</figcaption></figure>
+                <figure class="m sq"><img src="media2/sd_6.jpg" alt="핫도그 페어링"><figcaption>핫도그 · 맥주 페어링</figcaption></figure>
+              </div></div>
+            </div>
+          </article>
+
+          <article class="entry" id="commerce-aivideo">
+            <div class="entry-h"><a class="back" href="#commerce">← 목록</a><span class="date">2026</span><h3>스테이크칩 AI 광고 영상 소재</h3><span class="tag">EAT OR DIE · AI 영상</span></div>
+            <div class="entry-b">
+              <div class="contrib"><span class="ct">사용 툴</span><div class="chips"><span>Higgsfield</span><span>Kling AI</span><span>ChatGPT</span><span>Gemini</span></div></div>
+              <ul><li>촬영이 어려운 장면을 AI로 생성해 Meta 광고 영상 소재로 제작 · 집행</li></ul>
+              <div class="gal"><div class="gal-t">AI 광고 영상 소재<span>눌러서 재생</span></div><div class="strip"><figure class="m v"><video controls muted playsinline preload="none" poster="media2/v09_poster.jpg" src="media2/v09.mp4"></video><figcaption>열풍 건조 과정</figcaption></figure><figure class="m v"><video controls muted playsinline preload="none" poster="media2/v02_poster.jpg" src="media2/v02.mp4"></video><figcaption>한강 보트</figcaption></figure><figure class="m v"><video controls muted playsinline preload="none" poster="media2/v03_poster.jpg" src="media2/v03.mp4"></video><figcaption>8비트 게임 컨셉</figcaption></figure><figure class="m v"><video controls muted playsinline preload="none" poster="media2/v10_poster.jpg" src="media2/v10.mp4"></video><figcaption>여는 순간 쏟아지는 풍미</figcaption></figure></div></div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- AGENCY -->
+      <section class="view" id="v-agency" aria-label="대행 클라이언트 프로젝트">
+        <h2 class="sec-h"><span>브랜디드 콘텐츠</span></h2>
+        <div class="stack">
+          <p class="folder-note grid-only">브랜디드콘텐츠 부서의 클라이언트 프로젝트와 팝업 기획안<br>타깃과 화제성을 읽고 포맷·출연자·공간 경험을 제안</p>
+
+          <div class="pgrid grid-only"><a class="pcard" href="#agency-oura"><span class="pc-img"><img src="media2/ppl_1.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.08 – 진행 중</span><b>오우라링5 한국 런칭 · 잠실 팝업 · 크리에이터 콘텐츠</b><span class="pc-t">오우라링 · 커머스 대행</span></span></a><a class="pcard" href="#agency-okiki"><span class="pc-img"><img src="media2/pp_d4_1.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.06</span><b>1030 대상 유튜브 채널 콘텐츠 아이데이션</b><span class="pc-t">카카오 「오키키」 · 콘텐츠 제안</span></span></a><a class="pcard" href="#agency-keg"><span class="pc-img"><img src="media/pp_d2_9.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.07</span><b>신규 서브채널 「쉬었음, 그게 왜?」</b><span class="pc-t">코리아교육그룹 · 채널 기획</span></span></a><a class="pcard" href="#agency-8code"><span class="pc-img"><img src="media/ec_22.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.10 – 진행 중</span><b>사주 앱 바이럴 캠페인</b><span class="pc-t">에잇코드 · 메인 PM</span></span></a><a class="pcard" href="#agency-algo"><span class="pc-img"><img src="media/algo_hero.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.07</span><b>AI로 만든 VIP 30일 체험 랜딩페이지</b><span class="pc-t">알고케어 · algocare-vip.com</span></span></a><a class="pcard" href="#agency-vans"><span class="pc-img"><img src="media2/vn_20.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.10</span><b>FIND YOUR VANS · 반스 60주년 성수 아카이브 팝업 기획</b><span class="pc-t">팝업 기획안</span></span></a><a class="pcard" href="#agency-helinox"><span class="pc-img"><img src="media/hx_offline.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2026.10</span><b>헬리녹스 웨어 「꽉 찬 경량」 · 온라인·매장 게임 기획</b><span class="pc-t">팝업 · 게임 기획안</span></span></a></div>
+
+          <article class="entry feature" id="agency-oura">
+            <div class="entry-h"><a class="back" href="#agency">← 목록</a><span class="date">2026.08 – 진행 중</span><h3>오우라링5 한국 런칭 · 잠실 팝업 · 크리에이터 콘텐츠</h3><span class="tag">오우라링 · 커머스 대행</span></div>
+            <div class="entry-b">
+              <p class="role"><b class="lb">주제</b> 오우라링5 한국 정식 런칭(미디어데이 8/18 · 잠실 롯데월드타워몰 B1 런칭 팝업 8/25–9/7)에 맞춘 셀럽·인플루언서 콘텐츠와 커머스 운영</p>
+              <div class="contrib"><span class="ct">맡은 일</span><div class="chips"><span>잠실 런칭 팝업 진행</span><span>데일리패션뉴스 에디터 현장 소통</span><span>팝업 영상 직접 출연</span><span>유튜버 콘텐츠 피드백</span><span>내부 IP 셀럽 PPL 콘텐츠 가이드</span><span>AI 활용 VIP 초대 가이드북 제작·배포</span></div></div>
+              <div class="tri">
+                <div><p class="tri-h">[셀럽 PPL 가이드]</p><ul><li>내부 IP 셀럽 채널 4곳 PPL 가이드 작성</li><li>조승연의 탐구생활 · 미키피디아 · 오늘의 주우재 등</li></ul></div>
+                <div><p class="tri-h">[유튜브 피드백]</p><ul><li>유튜버 4명 기획안 · 가편집본 피드백</li></ul></div>
+                <div><p class="tri-h">[런칭 팝업 · 매거진]</p><ul><li>잠실 런칭 팝업(8/25–9/7) 현장 진행</li><li>데일리패션뉴스 팝업 릴스 협업 · 직접 출연 <a href="https://www.instagram.com/reel/DcnrGqGBuMv/" target="_blank" rel="noopener">보기 ↗</a></li></ul></div>
+              </div>
+              <div class="gal"><div class="gal-t">VIP 초대 가이드북 · AI로 제작해 배포<span><a href="https://ouraring5-vip-only-studioepisode.capo314925.chatgpt.site/" target="_blank" rel="noopener">가이드북 페이지 보기 ↗</a></span></div>
+                <ul style="margin:0 0 10px;padding-left:18px"><li>셀럽·인플루언서용 팝업 초대 겸 콘텐츠 가이드북 웹페이지 AI 제작·배포</li></ul>
+                <div class="strip"><figure class="m w"><img src="media/oura_gb1.jpg" alt="가이드북 첫 화면"><figcaption>첫 화면 · 포스팅 기간과 팝업 일정</figcaption></figure><figure class="m w"><img src="media/oura_gb2.jpg" alt="콘텐츠 브리프"><figcaption>런칭 팝업에 맞춘 콘텐츠 브리프</figcaption></figure><figure class="m w"><img src="media/oura_gb3.jpg" alt="콘텐츠 기획 예시"><figcaption>콘텐츠 기획 예시</figcaption></figure></div></div>
+              <div class="gal"><div class="gal-t">런칭 팝업 · 내부 IP 셀럽 PPL 콘텐츠 가이드<span>옆으로 넘겨 보기</span></div><div class="strip"><figure class="m"><a href="https://www.instagram.com/reel/DcnrGqGBuMv/" target="_blank" rel="noopener"><img src="media/oura_reel.jpg" alt="데일리패션뉴스 오우라링5 팝업 릴스"></a><figcaption>데일리패션뉴스 팝업 릴스 · 직접 출연</figcaption></figure><figure class="m w"><img src="media2/ppl_7.jpg" alt="조승연의 탐구생활 · 미래 FOMO에 맞서는 현대인의 노하우"><figcaption>조승연의 탐구생활 · 미래 FOMO에 맞서는 현대인의 노하우</figcaption></figure><figure class="m w"><img src="media2/ppl_8.jpg" alt="미키피디아 · 부부가 함께 성장하는 법"><figcaption>미키피디아 · 부부가 함께 성장하는 법</figcaption></figure><figure class="m w"><img src="media2/ppl_9.jpg" alt="오늘의 주우재 · 26F/W 가장 트렌디한 반지"><figcaption>오늘의 주우재 · 26F/W 가장 트렌디한 반지</figcaption></figure><figure class="m w"><img src="media2/ppl_10.jpg" alt="아이돌 그룹 채널 · 멈추지 않고 관리하는 비밀 꿀템"><figcaption>아이돌 그룹 채널 · 멈추지 않고 관리하는 비밀 꿀템</figcaption></figure><figure class="m w"><img src="media2/ppl_6.jpg" alt="공통 소구 포인트 4가지"><figcaption>공통 소구 포인트 4가지</figcaption></figure><figure class="m w"><img src="media2/ppl_1.jpg" alt="가이드 표지"><figcaption>가이드 표지</figcaption></figure></div></div>
+            </div>
+          </article>
+
+          <article class="entry" id="agency-okiki">
+            <div class="entry-h"><a class="back" href="#agency">← 목록</a><span class="date">2026.06</span><h3>1030 대상 유튜브 채널 콘텐츠 아이데이션</h3><span class="tag">카카오 「오키키」 · 콘텐츠 제안</span></div>
+            <div class="entry-b">
+              <p class="role">역할: 포맷 기획, 레퍼런스 리서치, MC 후보 구성, Notion 기획안 작성</p>
+              <div class="cap-doc"><figure><img src="media2/pp_d4_1.jpg" alt="기획안 표지"></figure><div style="display:grid;gap:10px"><div class="contrib"><span class="ct">맡은 일</span><div class="chips"><span>콘텐츠 아이데이션</span><span>포맷 A·B안 기획</span><span>MC 후보 제안</span><span>레퍼런스 리서치</span></div></div><p class="role">기획안 핵심: 숏폼 시대에 오히려 역주행하는 팟캐스트형 고민상담<br>사연은 카카오톡 오픈채팅으로 받고, 통화·단톡방 등 카카오 기능을 회차 구성에 반영</p></div></div>
+              <div class="gal"><div class="gal-t">기획안 PPT<span>옆으로 넘겨 보기</span></div><div class="strip"><figure class="m w"><img src="media2/pp_d9_1.jpg" alt="아이데이션 기획안 (헤이지)"><figcaption>아이데이션 기획안 (헤이지)</figcaption></figure><figure class="m w"><img src="media/kk_8.jpg" alt="제안서: 채널 방향성 AS-IS → TO-BE"><figcaption>제안서: 채널 방향성 AS-IS → TO-BE</figcaption></figure><figure class="m w"><img src="media2/pp_d4_28.jpg" alt="제안서: 포맷 레퍼런스"><figcaption>제안서: 포맷 레퍼런스</figcaption></figure><figure class="m w"><img src="media2/pp_d4_37.jpg" alt="제안서: 회차 구성"><figcaption>제안서: 회차 구성</figcaption></figure></div></div>
+              <ul>
+                <li><b class="lb">A안</b> 고민상담 팟캐스트형<br>비밀보장, 머니그라피 〈B주류 초대석〉을 레퍼런스로 김민경·가비·유병재를 MC 후보로 제안</li>
+                <li><b class="lb">B안</b> 세대마다 다른 '당연한 것'이 부딪히는 토크형<br>1020대부터 50대까지 세대별 MC를 구성</li>
+                <li>카카오가 이미 쓰고 있는 레퍼런스와 겹치는 사례는 빼서 차별화</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="entry" id="agency-keg">
+            <div class="entry-h"><a class="back" href="#agency">← 목록</a><span class="date">2026.07</span><h3>신규 서브채널 「쉬었음, 그게 왜?」</h3><span class="tag">코리아교육그룹 · 채널 기획</span></div>
+            <div class="entry-b">
+              <p class="role">역할: 타깃 정의, 채널 메시지, 포맷 2종과 셀럽 캐스팅 기획</p>
+              <div class="cap-doc"><figure><img src="media/pp_d2_1.jpg" alt="기획안 표지"></figure><div style="display:grid;gap:10px"><div class="contrib"><span class="ct">맡은 일</span><div class="chips"><span>콘텐츠 아이데이션</span><span>포맷 2종 기획</span><span>출연자 캐스팅 제안</span></div></div><p class="role">기획안 핵심: 합격 후기만 넘치는 취업 콘텐츠 대신 "지금 뭐 해야 해요?"라는 질문을 진지하게 들어주는 사연 기반 포맷<br>시즌2 근황 편, 사연 커뮤니티까지 확장성을 설계</p></div></div>
+              <div class="gal"><div class="gal-t">기획안 PPT<span>옆으로 넘겨 보기</span></div><div class="strip"><figure class="m w"><img src="media/pp_d2_9.jpg" alt="출연자 후보 비교"><figcaption>출연자 후보 비교</figcaption></figure><figure class="m w"><img src="media/pp_d2_14.jpg" alt="출연자 제안: 엄지윤"><figcaption>출연자 제안: 엄지윤</figcaption></figure></div></div>
+              <ul>
+                <li>취업을 쉬고 있거나 방향을 잃은 20~50대(쉬었음 청년, 레디컨슈머)를 타깃으로 "완성되지 않아도 괜찮다"는 메시지 설정</li>
+                <li><b class="lb">IDEA 1</b> 엄지윤이 사연자의 일상으로 찾아가는 커리어 고민 상담소</li>
+                <li><b class="lb">IDEA 2</b> 연령대별 셀럽이 KEG 직업 수업을 직접 듣는 체험기 (30~40대 조이, 50대 송은이)</li>
+              </ul>
+            </div>
+          </article>
+
+          
+
+          
+
+          <article class="entry feature" id="agency-8code">
+            <div class="entry-h"><a class="back" href="#agency">← 목록</a><span class="date">2026.10 – 진행 중</span><h3>사주 앱 「에잇코드」 바이럴 캠페인</h3><span class="tag">에잇코드 · 메인 PM</span></div>
+            <div class="entry-b">
+              <p class="role"><b class="lb">주제</b> AI 사주 앱이 아니라 명리학자 대표의 풀이를 코딩한 앱이라는 점을 '사람 같은 사주앱'으로 퍼뜨리는 4개월 바이럴 캠페인(2026.11 – 2027.02)</p>
+              <div class="contrib"><span class="ct">맡은 일</span><div class="chips"><span>메인 PM</span><span>2차 제안서 06 콘텐츠 아이디어 파트 아이데이션</span><span>바이럴 인플루언서 리스트업 (진행 중)</span><span>외주 업체 컨택 (진행 중)</span></div></div>
+
+              <div class="gal"><div class="gal-t">2차 제안서 · 06 콘텐츠 아이디어<span>옆으로 넘겨 보기 · 맡은 파트</span></div><div class="strip"><figure class="m w"><img src="media/ec_22.jpg" alt="포맷별 소재·말하는 사람·역할 정리"><figcaption>포맷별 소재·말하는 사람·역할 정리</figcaption></figure><figure class="m w"><img src="media/ec_25.jpg" alt="FORMAT 1 · ___ 하겠습니다.. 아니 안 하겠습니다"><figcaption>FORMAT 1 · ___ 하겠습니다.. 아니 안 하겠습니다</figcaption></figure><figure class="m w"><img src="media/ec_27.jpg" alt="FORMAT 1 · 이런 인생도 사주에 나올까?"><figcaption>FORMAT 1 · 이런 인생도 사주에 나올까?</figcaption></figure><figure class="m w"><img src="media/ec_31.jpg" alt="FORMAT 2 · 동상이몽 블라인드 사주"><figcaption>FORMAT 2 · 동상이몽 블라인드 사주</figcaption></figure><figure class="m w"><img src="media/ec_33.jpg" alt="FORMAT 2 · 37분째 연락 없네 잘 살아"><figcaption>FORMAT 2 · 37분째 연락 없네 잘 살아</figcaption></figure><figure class="m w"><img src="media/ec_35.jpg" alt="FORMAT 2 · 사주만 보고 직업을 맞출 수 있을까?"><figcaption>FORMAT 2 · 사주만 보고 직업을 맞출 수 있을까?</figcaption></figure><figure class="m w"><img src="media/ec_40.jpg" alt="FORMAT 3 · 이동수 있다고 무작정 퇴사하지 마세요"><figcaption>FORMAT 3 · 이동수 있다고 무작정 퇴사하지 마세요</figcaption></figure><figure class="m w"><img src="media/ec_42.jpg" alt="추가 · 덕질도 사랑이다"><figcaption>추가 · 덕질도 사랑이다</figcaption></figure><figure class="m w"><img src="media/ec_44.jpg" alt="추가 · 2026 운 연말 결산"><figcaption>추가 · 2026 운 연말 결산</figcaption></figure></div></div>
+            </div>
+          </article>
+
+          <article class="entry" id="agency-algo">
+            <div class="entry-h"><a class="back" href="#agency">← 목록</a><span class="date">2026.07</span><h3>AI로 만든 VIP 30일 체험 랜딩페이지</h3><span class="tag">알고케어 · algocare-vip.com</span></div>
+            <div class="entry-b">
+              <div class="cap-doc"><figure class="ig"><img src="media/algo_mobile.jpg" alt="알고케어 랜딩페이지 모바일 화면"></figure><div style="display:grid;gap:10px">
+                <div class="contrib"><span class="ct">맡은 일</span><div class="chips"><span>페이지 구성 아이데이션</span><span>AI 활용 페이지 제작</span><span>모션·레이아웃 설계</span><span>배포·도메인 연결</span></div></div>
+                <ul>
+                  <li>AI 영양 디바이스 algocare E1(정가 119만 원)의 VIP 무료 체험 초대 랜딩페이지와 3단계 체험 신청서를 AI를 활용해 직접 제작</li>
+                  <li>스크롤 리빌, 히어로 모션, 숫자 카운트업, 호버 인터랙션을 넣고, 딥 잉크와 오렌지 톤으로 프리미엄 무드를 정리</li>
+                  <li>테스트 URL 배포 후 피드백을 반영하고 정식 도메인에 연결</li>
+                </ul>
+                <p class="role">사이트: <a href="https://algocare-vip.com/">algocare-vip.com</a></p>
+              </div></div>
+              <div class="gal"><div class="gal-t">화면<span>데스크톱 · 모바일</span></div><div class="strip"><figure class="m xw"><img src="media/algo_hero.jpg" alt="알고케어 랜딩 데스크톱 첫 화면"><figcaption>데스크톱 첫 화면</figcaption></figure><figure class="m"><img src="media/algo_mobile.jpg" alt="알고케어 랜딩 모바일 화면"><figcaption>모바일 · 신뢰 지표 섹션</figcaption></figure></div></div>
+            </div>
+          </article>
+
+          <article class="entry feature" id="agency-vans">
+            <div class="entry-h"><a class="back" href="#agency">← 목록</a><span class="date">2026.10</span><h3>FIND YOUR VANS · 반스 60주년 성수 아카이브 팝업 기획</h3><span class="tag">팝업 기획안</span></div>
+            <div class="entry-b">
+              <p class="role"><b class="lb">주제</b> 누구나 한 켤레쯤 신어 본 반스를, 소비자의 사진첩 속 추억으로 60주년을 이야기하는 참여형 캠페인과 성수 아카이브 팝업</p>
+              <ul><li>참여형 팝업 기획안</li><li><b class="lb">캠페인</b> 사진첩 속 반스 사진을 찾고(FIND), 추억을 공유하고(SHARE), 팝업에서 나의 2026을 더하는(ADD) 참여 흐름</li><li><b class="lb">팝업</b> 모인 사진·사연을 연도순 아카이브로 전시하고, 반스를 신고 폴라로이드를 찍어 2026 공간에 더하는 체험</li></ul>
+              <div class="gal"><div class="gal-t">기획안 PPT · 팝업 파트<span>옆으로 넘겨 보기</span></div><div class="strip"><figure class="m w"><img src="media2/vn_1.jpg" alt="FIND YOUR VANS 표지"><figcaption>FIND YOUR VANS 표지</figcaption></figure><figure class="m w"><img src="media2/vn_14.jpg" alt="찾기 → 나누기 → 더하기"><figcaption>찾기 → 나누기 → 더하기</figcaption></figure><figure class="m w"><img src="media2/vn_15.jpg" alt="선정된 사연은 성수 스토어에 전시"><figcaption>선정된 사연은 성수 스토어에 전시</figcaption></figure><figure class="m w"><img src="media2/vn_18.jpg" alt="FIND YOUR VANS NOW · 현장 체험"><figcaption>FIND YOUR VANS NOW · 현장 체험</figcaption></figure><figure class="m w"><img src="media2/vn_19.jpg" alt="연도별 아카이브, 마지막은 2026"><figcaption>연도별 아카이브, 마지막은 2026</figcaption></figure><figure class="m w"><img src="media2/vn_20.jpg" alt="성수 아카이브 공간"><figcaption>성수 아카이브 공간</figcaption></figure><figure class="m w"><img src="media2/vn_21.jpg" alt="성수 컨셉 스토어"><figcaption>성수 컨셉 스토어</figcaption></figure><figure class="m w"><img src="media2/vn_22.jpg" alt="기대 결과"><figcaption>기대 결과</figcaption></figure></div></div>
+            </div>
+          </article>
+
+          <article class="entry" id="agency-helinox">
+            <div class="entry-h"><a class="back" href="#agency">← 목록</a><span class="date">2026.10</span><h3>헬리녹스 웨어 「꽉 찬 경량」 · 온라인·매장 게임 기획</h3><span class="tag">팝업 · 게임 기획안</span></div>
+            <div class="entry-b">
+              <p class="role">팀 컨셉 '꽉 찬 경량': 덜 채워서 가벼운 경량이 아니라, 30개 패널 구조로 꽉 채우고도 320g인 헬리녹스 이클립스 다운</p>
+              <div class="contrib"><span class="ct">맡은 파트</span><div class="chips"><span>크리에이티브 전략 2 · 온라인 게임 기획</span><span>크리에이티브 전략 3 · 오프라인 게임 기획</span><span>게임 화면 시안</span></div></div>
+              <div class="tri">
+                <div><p class="tri-h">[온라인 게임] 꽉 채워봐 320g</p><ul><li>떨어지는 거위털은 받고 솜뭉치는 피하며 30개 패널 채우기</li><li>재킷을 좌우로 움직여 받기(PC 마우스·방향키 / 모바일 드래그), 갈수록 빨라지는 속도</li><li>솜뭉치를 받으면 텐트(목숨)가 하나씩 무너짐, 3개 모두 무너지면 게임 오버</li><li>거위털로만 채워 저울에 올려 320g이면 성공</li></ul></div>
+                <div><p class="tri-h">[오프라인 게임] 320g을 맞춰라</p><ul><li>매장에서 구스다운을 스쿱으로 한 번 퍼 저울에 올리고, 목표 320g과의 차이 확인</li><li><b class="lb">체험 동선</b> 게임 → 재킷 들어보기 → 착용하고 움직여보기 → 파우치에 접어보기</li><li>손으로 가늠한 무게와 몸으로 느끼는 착용감 차이로 '꽉 찬 경량' 체감</li></ul></div>
+                <div><p class="tri-h">[기대효과]</p><ul><li><b class="lb">온라인 게임</b> 매장 방문 없이 누구나 참여해 헬리녹스 웨어 접점 확대</li><li>완성한 재킷 이미지와 게임 기록을 SNS에 공유해 자연스러운 확산</li><li><b class="lb">오프라인 게임</b> 무게 가늠 경험을 바로 제품 체험·구매로 연결</li></ul></div>
+              </div>
+              <div class="gal"><div class="gal-t">게임 · 현장 이미지<span>팀 최종 기획안</span></div><div class="strip"><figure class="m xw"><img src="media/hx_offline.jpg" alt="매장 게임 320g을 맞춰라"><figcaption>매장 게임 「320g을 맞춰라」</figcaption></figure><figure class="m xw"><img src="media/hx_game1.jpg" alt="웹 게임 시작 화면"><figcaption>온라인 게임 「꽉 채워봐 320g」 시작 화면</figcaption></figure><figure class="m xw"><img src="media/hx_game2.jpg" alt="웹 게임 플레이 화면"><figcaption>플레이 화면 · 거위털 받기, 텐트 목숨 3개</figcaption></figure></div></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SIDE -->
+      <section class="view" id="v-side" aria-label="사이드 프로젝트">
+        <h2 class="sec-h"><span>사이드 · 팬 콘텐츠</span></h2>
+        <div class="stack">
+          <div class="pgrid grid-only"><a class="pcard" href="#side-ddeun"><span class="pc-img"><img src="media/ig_ddeun_reels.jpg" alt=""></span><span class="pc-b"><span class="pc-d">운영 중</span><b>서브컬처 덕질 기록 계정 「뜨내깅」</b><span class="pc-t">@ddeunegiii · 릴스 최고 13.7만 회</span></span></a><a class="pcard" href="#side-yeop"><span class="pc-img"><img src="media2/yj_2.jpg" alt=""></span><span class="pc-b"><span class="pc-d">운영 중</span><b>직장인 공감형 숏폼 채널 「옆자리그녀」</b><span class="pc-t">@yeopjarri · 최고 조회수 4.3만 회</span></span></a><a class="pcard" href="#side-shop"><span class="pc-img"><img src="media/ig_heg.jpg" alt=""></span><span class="pc-b"><span class="pc-d">2023.05 – 2023.11</span><b>개인 쇼핑몰 「헤그헤그」 1인 운영</b><span class="pc-t">@heg.heg_on · 네이버 스마트스토어</span></span></a></div>
+
+          <article class="entry feature" id="side-ddeun">
+            <div class="entry-h"><a class="back" href="#side">← 목록</a><span class="date">운영 중</span><h3>서브컬처 덕질 기록 계정 「뜨내깅」</h3><span class="tag">@ddeunegiii · 릴스 최고 13.7만 회</span></div>
+            <div class="entry-b">
+              <div class="cap-doc"><figure class="ig"><img src="media/ig_ddeun_reels.jpg" alt="뜨내깅 인스타그램 릴스 탭"></figure><div style="display:grid;gap:10px">
+                <div class="contrib"><span class="ct">계정 정보</span><div class="chips"><span>@ddeunegiii</span><span>팔로워 226</span><span>릴스 누적 약 35.6만 회</span><span>10만+ 릴스 2개</span></div></div>
+                <ul>
+                  <li>애니메이션·서브컬처 IP를 좋아하는 덕질 일상을 기록하는 계정 직접 운영</li>
+                  <li>굿즈 언박싱, 한정판 콜라보 굿즈, 코스프레처럼 팬이 실제로 돈과 시간을 쓰는 순간을 릴스로 제작</li>
+                  <li>〈블루록〉 바로 피규어 릴스가 13.7만 회, 한정판 콜라보 카메라 릴스가 10.9만 회를 기록<br>팔로워 226명 계정에서 팔로워의 수백 배 도달 달성</li>
+                  <li>팬으로서 어떤 굿즈를 사고, 어떤 현장에서 무엇을 인증하고 싶어 하는지 직접 경험 중</li>
+                </ul>
+              </div></div>
+              <div class="reel-rank"><div class="gal-t" style="font-weight:800;color:var(--blue)">조회수 TOP 6 릴스<span>2026.11 기준 · 인스타그램 공개 조회수</span></div><ol><li><span class="rk">1</span><img src="media2/rl_1.jpg" alt="메이드복 입은 〈블루록〉 바로 피규어 언박싱"><div><b>메이드복 입은 〈블루록〉 바로 피규어 언박싱</b><span class="rt">블루록 · 피규어</span></div><span class="rv">▶ 13.7만</span></li><li><span class="rk">2</span><img src="media2/rl_2.jpg" alt=""전 세계에 단 2,000대뿐인 카메라?" 애니 콜라보 한정판 카메라"><div><b>"전 세계에 단 2,000대뿐인 카메라?" 애니 콜라보 한정판 카메라</b><span class="rt">한정판 콜라보 굿즈</span></div><span class="rv">▶ 10.9만</span></li><li><span class="rk">3</span><img src="media2/rl_3.jpg" alt="애니 굿즈 티셔츠 리뷰"><div><b>애니 굿즈 티셔츠 리뷰</b><span class="rt">굿즈 의류</span></div><span class="rv">▶ 9.4만</span></li><li><span class="rk">4</span><img src="media2/rl_4.jpg" alt=""그녀의 데스노트를 소개합니다" 데스노트 폰케이스"><div><b>"그녀의 데스노트를 소개합니다" 데스노트 폰케이스</b><span class="rt">데스노트 · 폰케이스</span></div><span class="rv">▶ 9,259</span></li><li><span class="rk">5</span><img src="media2/rl_5.jpg" alt="애니 캐릭터 코스프레 숏폼"><div><b>애니 캐릭터 코스프레 숏폼</b><span class="rt">코스프레</span></div><span class="rv">▶ 1,870</span></li><li><span class="rk">6</span><img src="media2/rl_6.jpg" alt=""개고능 가챠 찾았음" 가챠 굿즈 언박싱"><div><b>"개고능 가챠 찾았음" 가챠 굿즈 언박싱</b><span class="rt">가챠</span></div><span class="rv">▶ 1,681</span></li></ol></div>
+            </div>
+          </article>
+
+          <article class="entry feature" id="side-yeop">
+            <div class="entry-h"><a class="back" href="#side">← 목록</a><span class="date">운영 중</span><h3>직장인 공감형 숏폼 채널 「옆자리그녀」</h3><span class="tag">@yeopjarri · 기획·출연·편집</span></div>
+            <div class="entry-b">
+              <div class="tri">
+                <div><p class="tri-h">[주제]</p><p>동료의 말투와 취향을 캐릭터로 만든 직장인 코미디 숏폼</p></div>
+                <div><p class="tri-h">[직접 한 것]</p><ul><li>채널 콘셉트·캐릭터 기획</li><li>출연</li><li>CapCut 편집·업로드</li></ul></div>
+                <div><p class="tri-h">[성과]</p><ul><li><b>최고 조회수 <mark>4.3만 회</mark> · 평균 5천 회</b></li><li>시리즈 '옆자리 그녀 염탐하기' · 8,906회</li><li>'연차별 사무실 책상' · 4.3만 회</li></ul></div>
+              </div>
+              <div class="gal"><div class="gal-t">대표 릴스<span><a href="https://www.instagram.com/yeopjarri/" target="_blank" rel="noopener">@yeopjarri ↗</a></span></div><div class="strip"><figure class="m tall"><img src="media2/yj_1.jpg" alt="출근한 옆자리 그녀 염탐하기"><figcaption>시리즈 '옆자리 그녀 염탐하기' · 8,906회</figcaption></figure><figure class="m tall"><img src="media2/yj_2.jpg" alt="연차별 사무실 책상"><figcaption>'연차별 사무실 책상' · 4.3만 회</figcaption></figure></div></div>
+            </div>
+          </article>
+
+          <article class="entry feature" id="side-shop">
+            <div class="entry-h"><a class="back" href="#side">← 목록</a><span class="date">2023.05 – 2023.11</span><h3>개인 쇼핑몰 「헤그헤그」 1인 운영</h3><span class="tag">@heg.heg_on · 네이버 스마트스토어</span></div>
+            <div class="entry-b">
+              <div class="contrib"><span class="ct">1인 쇼핑몰 운영</span><div class="chips"><span>상품 셀렉·스타일링</span><span>촬영 디렉팅·편집</span><span>상세페이지·문구</span><span>DM 고객 응대</span></div></div>
+              <ul>
+                <li>상품 셀렉부터 스타일링, 촬영 디렉팅, 상세페이지 제작, DM 응대까지 1인 쇼핑몰 운영</li>
+                <li>실루엣·무드·활용도를 보여 주는 룩북형 콘텐츠로, 쇼핑을 넘어 '스타일 제안'이 되도록 운영<br>릴스 조회수는 최고 1.4만 회</li>
+              </ul>
+              <div class="cap-doc"><figure class="ig"><img src="media/ig_heg.jpg" alt="헤그헤그 인스타그램 프로필"></figure><div style="display:grid;gap:8px"><div class="contrib"><span class="ct">계정 정보</span><div class="chips"><span>@heg.heg_on</span><span>개인 쇼핑몰</span><span>스마트스토어 연동</span></div></div><p class="role">개인 쇼핑몰 브랜드를 직접 만들고, 인스타그램과 네이버 스마트스토어로 판매</p></div></div>
+              <div class="gal"><div class="gal-t">운영 기록<span>릴스 · 스토리 · 피드</span></div>
+                <div class="shop-stack"><figure class="m xw"><img src="media2/shop_grid.jpg" alt="쇼핑몰 릴스 그리드"><figcaption>릴스 그리드 (조회수 최고 1.4만)</figcaption></figure><figure class="m xw"><img src="media2/shop_story.jpg" alt="쇼핑몰 스토리"><figcaption>할인·바로배송·후기 스토리</figcaption></figure><figure class="m xw"><img src="media2/shop_feed.jpg" alt="쇼핑몰 피드와 할인 페이지"><figcaption>룩북 피드와 신상 할인 페이지</figcaption></figure></div>
+              </div>
+            </div>
+          </article>
+
+          
+
+          
+
+
+        </div>
+      </section>
+
+      <!-- AI -->
+      <section class="view" id="v-ai" aria-label="AI 활용 역량">
+        <h2 class="sec-h"><span>AI 활용</span></h2>
+        <div class="stack">
+          <p class="folder-note">AI를 기획 보조가 아닌 제작 도구로 활용<br>광고 영상, 랜딩페이지, 팬 콘텐츠, 데이터 자동화까지 실제로 배포·집행한 결과물</p>
+          <div class="pgrid">
+            <a class="pcard" href="#commerce-nhn"><span class="pc-img"><img src="media/nhn_final_poster.jpg" alt=""></span><span class="pc-b"><span class="pc-d">AI 영상</span><b>홀덤대회 중계 광고 15초</b><span class="pc-t">AI 배경 이미지 + 실제 패키지 합성</span></span></a>
+            <a class="pcard" href="#agency-algo"><span class="pc-img"><img src="media/algo_hero.jpg" alt=""></span><span class="pc-b"><span class="pc-d">AI 웹 제작</span><b>algocare-vip.com 랜딩페이지</b><span class="pc-t">AI로 제작·배포·도메인 연결</span></span></a>
+            <a class="pcard" href="#commerce-aivideo"><span class="pc-img"><img src="media2/v09_poster.jpg" alt=""></span><span class="pc-b"><span class="pc-d">AI 영상</span><b>스테이크칩 광고 영상 소재</b><span class="pc-t">AI 생성 컷을 광고 소재 촬영에 활용</span></span></a>
+            <a class="pcard" href="https://beat-step-arcade.haeeegii.chatgpt.site/" target="_blank" rel="noopener"><span class="pc-img"><img src="media/ddr_play.jpg" alt=""></span><span class="pc-b"><span class="pc-d">AI 팬 콘텐츠</span><b>큐티스트리트 DDR 리듬게임 「KAWAII BEAT」</b><span class="pc-t">AI로 제작·배포 ↗ 직접 플레이 가능</span></span></a>
+            <a class="pcard" href="https://heiiizy.github.io/cutie-street-callbook/" target="_blank" rel="noopener"><span class="pc-img"><img src="media/cb_2.jpg" alt=""></span><span class="pc-b"><span class="pc-d">AI 팬 콘텐츠</span><b>큐티스트리트 응원법 콜북 웹페이지</b><span class="pc-t">AI로 제작·배포 ↗ 12곡 + 기본 콜</span></span></a>
+          </div>
+          <div class="box">
+            <div class="box-t">AI로 만든 것 <span>기획 → 생성 → 편집 → 집행</span></div>
+            <div class="stack">
+              <div><b>1. AI 광고 영상</b><ul>
+                <li><b class="lb">NHN 홀덤대회 중계 광고</b> 컷별 스토리보드를 짜고, AI로 배경 이미지를 만든 뒤 실제 패키지 사진을 합성해 15초 영상을 완성<br>Higgsfield로 모션 적용 (<a href="#commerce-nhn">제작물 보기</a>)</li>
+                <li><b class="lb">스테이크칩 Meta 광고 소재</b> 촬영이 어려운 장면을 AI로 만들어 광고 소재 촬영에 활용 (<a href="#commerce-aivideo">AI 영상 소재 보기</a>)</li></ul></div>
+              
+              <div><b>2. AI 웹 제작</b><ul>
+                <li>알고케어 VIP 체험 랜딩페이지와 신청서를 AI로 만들고 모션·레이아웃을 다듬어 algocare-vip.com에 배포</li></ul></div>
+              <div><b>3. AI 팬 콘텐츠</b><ul>
+                <li><b class="lb">DDR 리듬게임 「KAWAII BEAT」</b> 큐티스트리트 「かわいいだけじゃだめですか？」 공식 MV에 맞춰 화살표 노트가 떨어지는 브라우저 리듬게임을 AI로 만들어 배포<br>난이도 3단계, 점수·콤보·정확도 판정, 2000년대 아케이드 감성 UI까지 직접 기획 <a href="https://beat-step-arcade.haeeegii.chatgpt.site/" target="_blank" rel="noopener">플레이하러 가기 ↗</a></li>
+                <li><b class="lb">응원법 콜북</b> 큐티스트리트 내한 공연에 대비해 곡별 응원 콜을 연습할 수 있는 웹페이지를 AI로 만들어 배포<br>기본 콜과 12곡의 콜을 곡별 탭으로 나누고, 일본어 콜 아래에 한글 발음을 달아 팬 누구나 따라 할 수 있게 구성 <a href="https://heiiizy.github.io/cutie-street-callbook/" target="_blank" rel="noopener">콜북 보기 ↗</a></li></ul></div>
+              <div class="gal"><div class="gal-t">AI 팬 콘텐츠<span>리듬게임 · 응원법 콜북</span></div><div class="strip"><figure class="m xw"><img src="media/ddr_title.jpg" alt="KAWAII BEAT 시작 화면"><figcaption>리듬게임 시작 화면 · 난이도 선택</figcaption></figure><figure class="m xw"><img src="media/ddr_play.jpg" alt="KAWAII BEAT 플레이 화면"><figcaption>플레이 화면 · MV 위로 노트 판정</figcaption></figure><figure class="m xw"><img src="media/cb_1.jpg" alt="응원법 콜북 첫 화면"><figcaption>응원법 콜북 첫 화면 · 곡별 탭</figcaption></figure><figure class="m xw"><img src="media/cb_2.jpg" alt="응원법 콜북 기본기"><figcaption>기본 콜 · 일본어 콜과 한글 발음</figcaption></figure></div></div>
+              <div><b>4. 업무 자동화</b><ul>
+                <li><b class="lb">매출 데이터 자동화</b> Cafe24 Open API로 주문 데이터를 Google Sheets에 자동으로 모으는 파이프라인 구축</li>
+                <li><b class="lb">광고 성과 리포트</b> Meta 광고 소재별 성과를 Chart.js 인터랙티브 리포트로 정리</li></ul></div>
+            </div>
+          </div>
+          <div class="box"><div class="box-t">사용하는 AI 도구</div>
+            <div class="chips"><span>Claude · Claude Code</span><span>Anthropic API</span><span>ChatGPT 이미지</span><span>Gemini 이미지</span><span>Codex</span><span>Higgsfield</span><span>Kling AI</span><span>Midjourney · Runway (교육 과제)</span><span>Python</span><span>React · Netlify</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GUESTBOOK -->
+
+    </main>
+  </div>
+</div>
+
+<script>
+(function(){
+  // 미니미 픽셀 맵
+  var MAP=[
+  "...hhhhhh...",
+  "..hhhhhhhh..",
+  ".hhhhhhhhhh.",
+  ".hhsssssshh.",
+  ".hseesseesh.",
+  ".hcssssssch.",
+  ".hsssmmsssh.",
+  ".hhsssssshh.",
+  "..pppppppp..",
+  ".pppwppwppp.",
+  "spppppppppps",
+  ".pppppppppp.",
+  "..bbbbbbbb..",
+  "..bbb..bbb..",
+  "..kkk..kkk.."];
+  var C={h:"#4a3328",s:"#ffdcc4",e:"#2b2b2b",c:"#ff9fb4",m:"#e0607e",p:"#ff7aa8",w:"#ffffff",b:"#4f73a8",k:"#3a3a3a"};
+  function draw(svg,ox,oy,px){
+    var NS="http://www.w3.org/2000/svg";
+    MAP.forEach(function(row,y){for(var x=0;x<row.length;x++){var ch=row[x];if(C[ch]){var r=document.createElementNS(NS,"rect");
+      r.setAttribute("x",ox+x*px);r.setAttribute("y",oy+y*px);r.setAttribute("width",px);r.setAttribute("height",px);r.setAttribute("fill",C[ch]);svg.appendChild(r);}}});
+  }
+  var mm=document.getElementById("minimi"); if(mm) draw(mm,0,0,8);
+  document.querySelectorAll(".mini-small").forEach(function(s){draw(s,0,0,8)});
+
+
+  var fx=document.getElementById("roomfix");
+  if(fx){
+    var NS="http://www.w3.org/2000/svg";
+    function Q(x,y,w,h,f){var r=document.createElementNS(NS,"rect");r.setAttribute("x",x);r.setAttribute("y",y);r.setAttribute("width",w);r.setAttribute("height",h);r.setAttribute("fill",f);fx.appendChild(r);}
+    // 선반 + 굿즈
+    Q(140,40,26,2,"#8a5a34");Q(140,54,26,2,"#8a5a34");
+    Q(142,33,4,7,"#bfe3ff");Q(143,31,2,2,"#ff7aa8");Q(148,35,4,5,"#ff6a00");Q(154,34,7,6,"#c0392b");Q(155,36,5,1,"#fff");
+    Q(142,47,6,7,"#fff");Q(143,48,4,5,"#ffc6d9");Q(150,48,7,6,"#2c6fa3");Q(159,49,5,5,"#ffe08a");
+    // 밴드 코너: 앰프 + 기타 스탠드 + 키보드
+    Q(14,104,16,14,"#3a3a3a");Q(16,106,12,8,"#5b5b5b");Q(17,107,10,6,"#777");Q(16,115,3,1,"#ffd166");
+    Q(36,72,2,26,"#d9c7a3");Q(34,70,6,3,"#3a3a3a");                        // neck+head
+    Q(32,96,10,8,"#5fc4b8");Q(31,99,12,10,"#5fc4b8");Q(33,108,8,3,"#5fc4b8");Q(34,100,6,4,"#f6f1e6");Q(36,101,2,6,"#3a3a3a"); // body
+    Q(30,110,14,1,"#8a5a34");Q(31,111,1,6,"#8a5a34");Q(42,111,1,6,"#8a5a34");   // stand
+    Q(46,104,26,5,"#3a3a3a");Q(47,105,24,2,"#fff");for(var k=48;k<71;k+=3)Q(k,105,1,1,"#3a3a3a");Q(49,109,2,8,"#555");Q(67,109,2,8,"#555");
+    // 책상 + 노트북 성과표
+    Q(150,96,44,3,"#8a5a34");Q(152,99,3,20,"#8a5a34");Q(189,99,3,20,"#8a5a34");
+    Q(158,84,22,12,"#3a3a3a");Q(160,86,18,8,"#eaf3fa");
+    Q(162,91,2,3,"#ff7aa8");Q(165,89,2,5,"#ff7aa8");Q(168,87,2,7,"#ff7aa8");Q(171,90,2,4,"#ff7aa8");Q(174,88,2,6,"#ff7aa8");
+    Q(184,90,4,6,"#fff");Q(184,89,4,1,"#ff7aa8");                          // 머그
+    // 러그
+    Q(80,122,56,18,"#ffd2e2");Q(84,125,48,12,"#ffb3cb");
+    // 미니미
+    MAP.forEach(function(row,y){for(var x=0;x<row.length;x++){var ch=row[x];if(C[ch])Q(98+x*1.7,104+y*1.7,1.7,1.7,C[ch]);}});
+    // 말풍선
+    function B(x,y,w,txt,tx,ty){Q(x,y,w,9,"#fff");Q(tx,ty,3,2,"#fff");var t=document.createElementNS(NS,"text");t.setAttribute("x",x+2);t.setAttribute("y",y+6.5);t.setAttribute("font-size","4.6");t.setAttribute("fill","#2c6fa3");t.setAttribute("font-family","Galmuri11, monospace");t.textContent=txt;fx.appendChild(t);}
+    B(60,90,31,"오늘도 덕질!",90,98);
+    B(92,79,31,"오늘도 기획!",105,88);
+    B(124,100,36,"오늘도 열심히!",122,106);
+  }
+
+  // 미니룸
+  var room=document.getElementById("room");
+  if(room){
+    var NS="http://www.w3.org/2000/svg";
+    function R(x,y,w,h,f){var r=document.createElementNS(NS,"rect");r.setAttribute("x",x);r.setAttribute("y",y);r.setAttribute("width",w);r.setAttribute("height",h);r.setAttribute("fill",f);room.appendChild(r);return r;}
+    function T(x,y,t,f,sz){var e=document.createElementNS(NS,"text");e.setAttribute("x",x);e.setAttribute("y",y);e.setAttribute("fill",f);e.setAttribute("font-size",sz||4);e.setAttribute("font-family","IBM Plex Mono, monospace");e.textContent=t;room.appendChild(e);}
+    R(0,0,160,52,"#fff2e2");                 // wall
+    for(var i=0;i<160;i+=8) R(i,0,4,52,"#fdebd6"); // wallpaper stripes
+    R(0,52,160,28,"#d9a36b");                // floor
+    for(var j=56;j<80;j+=6) R(0,j,160,1,"#c48e57");
+    // window
+    R(10,8,30,22,"#7fa6c0");R(12,10,12,8,"#cfe6f5");R(26,10,12,8,"#cfe6f5");R(12,20,12,8,"#cfe6f5");R(26,20,12,8,"#cfe6f5");
+    // poster
+    R(48,8,22,30,"#ff7aa8");R(50,10,18,26,"#ffd2e2");T(51,18,"CUTIE","#d63c74",4);T(51,24,"STREET","#d63c74",4);R(52,28,14,1,"#d63c74");
+    // shelf with goods
+    R(80,18,40,2,"#8a5a34");R(80,34,40,2,"#8a5a34");
+    R(83,10,6,8,"#bfe3ff");R(85,8,2,2,"#ff7aa8");               // acrylic stand
+    R(92,12,5,6,"#ff6a00");R(98,12,5,6,"#ffd166");             // keyrings
+    R(106,9,10,9,"#c0392b");T(106.5,15,"EOD","#fff",3);        // steak chip box
+    R(83,26,8,8,"#fff");R(84,27,6,6,"#ffc6d9");                 // photocard
+    R(94,24,10,10,"#2c6fa3");T(95,30,"GDS","#fff",3);          // goods box
+    R(107,27,9,7,"#ffe08a");                                     // tote
+    // desk
+    R(118,44,38,3,"#8a5a34");R(120,47,3,18,"#8a5a34");R(151,47,3,18,"#8a5a34");
+    R(126,32,22,12,"#3a3a3a");R(128,34,18,8,"#eaf3fa");          // laptop
+    R(130,39,2,3,"#ff7aa8");R(133,37,2,5,"#ff7aa8");R(136,35,2,7,"#ff7aa8");R(139,38,2,4,"#ff7aa8");R(142,36,2,6,"#ff7aa8"); // bars
+    R(124,44,26,1,"#555");
+    // rug
+    R(40,62,60,12,"#ffd2e2");R(44,65,52,6,"#ffb3cb");
+    // minimi standing
+    var g=document.createElementNS(NS,"g");room.appendChild(g);
+    var NS2=NS;MAP.forEach(function(row,y){for(var x=0;x<row.length;x++){var ch=row[x];if(C[ch]){var r=document.createElementNS(NS2,"rect");r.setAttribute("x",62+x*1.6);r.setAttribute("y",46+y*1.6);r.setAttribute("width",1.6);r.setAttribute("height",1.6);r.setAttribute("fill",C[ch]);g.appendChild(r);}}});
+    // speech bubble
+    R(84,42,30,9,"#ffffff");R(82,48,3,2,"#ffffff");T(86,48,"오늘도 덕질!","#2c6fa3",4);
+  }
+
+  // 탭 라우팅
+  var views=["home","about","resume","commerce","agency","side","ai"];
+  var smoothNext=false;document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest(".tabs a");if(a)smoothNext=true;},true);
+  var modal=document.createElement("div");modal.id="pmodal";
+  modal.innerHTML='<div class="pm-bg"></div><div class="pm-box" role="dialog" aria-modal="true"><button class="pm-x" type="button" aria-label="닫기">✕</button><div class="pm-c"></div></div>';
+  document.body.appendChild(modal);
+  var cur=null,ph=null,prevHash="",lastHash=location.hash;
+  window.addEventListener("hashchange",function(e){var o=(e.oldURL.split("#")[1]||"");if(!/^(commerce|agency|side)-/.test(o))prevHash=o?"#"+o:"";},true);
+  function openEntry(el){closeEntry();ph=document.createComment("ph");el.parentNode.insertBefore(ph,el);modal.querySelector(".pm-c").appendChild(el);cur=el;modal.classList.add("on");document.documentElement.classList.add("pm-open");modal.querySelector(".pm-box").scrollTop=0;}
+  function closeEntry(){if(!cur)return;ph.parentNode.insertBefore(cur,ph);ph.parentNode.removeChild(ph);cur=null;ph=null;modal.classList.remove("on");document.documentElement.classList.remove("pm-open");}
+  function userClose(){if(!cur)return;var back=prevHash||"";closeEntry();try{history.replaceState(null,"",location.pathname+location.search+back);}catch(e){}}
+  modal.querySelector(".pm-x").addEventListener("click",userClose);
+  modal.querySelector(".pm-bg").addEventListener("click",userClose);
+  modal.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("a.back");if(b){e.preventDefault();userClose();}});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")userClose();});
+  function show(v){
+    if(v==="contact") v="about";
+    var anchor=null;
+    var m=(v||"").match(/^(commerce|agency|side)-/);
+    if(m){anchor=v;v=m[1];}
+    if(views.indexOf(v)<0) v="home";
+    views.forEach(function(n){var el=document.getElementById("v-"+n);el.classList.add("on");el.classList.remove("detail");});
+    var target=document.getElementById("v-"+v);
+    document.querySelectorAll(".tabs a").forEach(function(a){if(a.dataset.v===v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+    if(anchor){
+      var el=document.getElementById(anchor);
+      if(el){
+        openEntry(el);return;
+      }
+    }
+    closeEntry();
+    if(location.hash&&target){ spyLock=Date.now()+900; setTab(v); target.scrollIntoView({block:"start",behavior:smoothNext?"smooth":"auto"}); smoothNext=false; }
+  }
+  function fromHash(){show((location.hash||"").replace("#",""));}
+  window.addEventListener("hashchange",fromHash);
+  document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="#"]');if(a&&a.getAttribute("href")===location.hash){e.preventDefault();fromHash();}});
+  var spyLock=0;
+  function setTab(n){document.querySelectorAll(".tabs a").forEach(function(a){if(a.dataset.v===n)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});}
+  function spy(){if(Date.now()<spyLock)return;var tb=document.querySelector(".tabs");var off=(tb&&getComputedStyle(tb).position==="sticky"?tb.offsetHeight:0)+24;var best="about",bt=-1e9;
+    views.forEach(function(n){var el=document.getElementById("v-"+n);if(!el)return;var t=el.getBoundingClientRect().top;if(t-off<=0&&t>bt){bt=t;best=n;}});
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4){best=views.slice().sort(function(a,b){return document.getElementById("v-"+a).getBoundingClientRect().top-document.getElementById("v-"+b).getBoundingClientRect().top}).pop();}
+    setTab(best);}
+  var spyT=false;window.addEventListener("scroll",function(){if(spyT)return;spyT=true;requestAnimationFrame(function(){spyT=false;spy();});},{passive:true});
+  window.addEventListener("scrollend",function(){spyLock=0;spy();});
+  document.getElementById("wave").addEventListener("change",function(e){if(e.target.value){location.hash=e.target.value;}});
+  fromHash();
+})();
+</script>
+</body>
+</html>
